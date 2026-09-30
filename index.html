@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Komplex 3 — Siklós — Ütemterv 2026/27</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27%3E%3Ctext y=%2713%27 font-size=%2713%27%3E%F0%9F%93%90%3C/text%3E%3C/svg%3E">
+<style id="css">
+*,*::before,*::after{box-sizing:border-box}
+:root{--bg:#fff;--ink:#0a0a0a;--muted:#686868;--body:#454545;--soft:#f5f5f5;--line:#d9d9d9;--max:1440px;--gutter:clamp(20px,3vw,48px)}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+.shell{width:min(calc(100% - (var(--gutter)*2)),var(--max));margin:0 auto}
+.meta{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.num{font-variant-numeric:tabular-nums}
+
+header.top{position:fixed;inset:0 0 auto 0;z-index:50;background:#fff;border-bottom:1px solid var(--line)}
+.nav{height:56px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:32px}
+.brand{font-size:13px;font-weight:700;letter-spacing:.02em;white-space:nowrap}
+.brand small{margin-left:10px;font-size:10px;color:var(--muted);font-weight:400;letter-spacing:.12em}
+.nav-links{display:flex;gap:22px;font-size:11px;justify-content:center}
+.nav-links a{position:relative;padding:4px 0;color:var(--muted)}
+.nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:-14px;height:1px;background:var(--ink);transition:right .16s ease}
+.nav-links a b{color:var(--ink);font-weight:500;margin-right:5px}
+.nav-links a:hover{color:var(--ink)}
+.save{display:flex;align-items:center;gap:14px}
+.save-state{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.save-state.dirty{color:var(--ink)}
+.btn{border:1px solid var(--ink);background:transparent;padding:6px 12px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+.btn:hover:not(:disabled){background:var(--ink);color:#fff}
+.btn:disabled{border-color:var(--line);color:var(--muted);cursor:default}
+:focus-visible{outline:1px solid var(--ink);outline-offset:2px}
+
+main{padding-top:56px}
+.hero{padding:clamp(72px,9vw,128px) 0 48px}
+.grid12{display:grid;grid-template-columns:repeat(12,1fr);column-gap:20px}
+.hero .meta.kick{grid-column:1/6}
+.hero h1{grid-column:1/12;margin:28px 0 0;font-size:clamp(46px,7.4vw,118px);line-height:.9;letter-spacing:-.058em;font-weight:500}
+.hero h1 span{display:block;font-weight:300}
+.hero-copy{grid-column:7/11;margin:40px 0 0;font-size:clamp(15px,1.25vw,18px);line-height:1.55;color:var(--body);max-width:600px}
+.hero-meta{grid-column:1/6;margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:18px 24px;font-size:11px;color:var(--muted)}
+.hero-meta strong{display:block;color:var(--ink);font-weight:500;font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px}
+
+/* timeline */
+.tl{border-top:1px solid var(--ink);padding-top:14px}
+.tl-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:18px}
+.tl-scale{position:relative;display:grid;grid-template-columns:repeat(14,1fr) .6fr 1fr;border-bottom:1px solid var(--line)}
+.tl-cell{border-left:1px solid var(--line);padding:0 6px 12px;min-height:118px;display:flex;flex-direction:column}
+.tl-cell.gap{border-left:0}
+.tl-cell .w{font-size:11px;font-weight:500}
+.tl-cell .d{font-size:9px;color:var(--muted);letter-spacing:.04em}
+.tl-cell .mk{margin-top:auto;font-size:10px;line-height:1.25}
+.tl-cell.contact .bar{height:3px;background:var(--line);margin:10px 0 8px}
+.tl-cell.key .bar{height:3px;background:var(--ink);margin:10px 0 8px}
+.tl-cell.brk .d::after{content:" · szünet"}
+.tl-cell .mk b{display:block;font-size:17px;letter-spacing:-.02em;font-weight:500}
+.tl-today{position:absolute;top:-6px;bottom:-6px;width:0;border-left:1px solid var(--ink)}
+.tl-today span{position:absolute;bottom:-2px;left:5px;font-size:9px;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+.next{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;margin-top:44px;border-top:1px solid var(--ink);padding-top:18px}
+.next-title{font-size:clamp(26px,3.6vw,54px);line-height:1.02;letter-spacing:-.045em;font-weight:400}
+.next-side{text-align:right}
+.next-side b{display:block;font-size:clamp(26px,3.6vw,54px);font-weight:300;letter-spacing:-.04em;line-height:1}
+
+section{padding:clamp(72px,9vw,128px) 0}
+section+section{border-top:1px solid var(--line)}
+.sec{display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
+.sec-index{grid-column:1/3;align-self:start;position:sticky;top:84px;font-size:10px;letter-spacing:.13em;color:var(--muted);text-transform:uppercase}
+.sec-index b{color:var(--ink);font-weight:500}
+.sec-main{grid-column:3/13;min-width:0}
+.sec-title{margin:0 0 18px;font-size:clamp(30px,3.8vw,58px);line-height:1.03;letter-spacing:-.045em;font-weight:400;max-width:980px}
+.sec-lead{margin:0 0 56px;max-width:640px;color:var(--body)}
+.list{border-top:1px solid var(--ink)}
+.row{border-bottom:1px solid var(--line);padding:22px 0 24px}
+.lbl{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:14px 0 3px}
+.lbl:first-child{margin-top:0}
+.tag{display:inline-block;font-size:10px;letter-spacing:.04em;border:1px solid var(--line);padding:3px 6px;color:#575757;margin:0 5px 5px 0}
+.tag.ink{border-color:var(--ink);color:var(--ink)}
+
+/* schedule */
+.s-row{display:grid;grid-template-columns:64px 104px minmax(0,1.25fr) minmax(0,1fr) 188px;gap:24px}
+.s-row>*{min-width:0}
+.s-row h3,.s-row p,.d-item,.r-row,.q-row,.t td{overflow-wrap:anywhere}
+.s-row .wk{font-size:22px;font-weight:500;letter-spacing:-.03em;line-height:1}
+.s-row .dt{font-size:12px}
+.s-row .dt small{display:block;font-size:10px;color:var(--muted);letter-spacing:.06em;margin-top:2px}
+.s-row h3{margin:4px 0 0;font-size:17px;line-height:1.3;letter-spacing:-.015em;font-weight:500}
+.s-row .dl{margin-top:10px;font-size:13px;font-weight:700}
+.s-row p{margin:0;color:var(--body)}
+.s-row .small{font-size:12.5px}
+.s-row.key{border-top:1px solid var(--ink);margin-top:-1px}
+.s-row.sugg h3,.s-row.brk h3{font-weight:400;color:var(--body)}
+.s-row.sugg .wk,.s-row.brk .wk,.s-row.self .wk{color:var(--muted);font-weight:400}
+.s-row.past{opacity:.5}
+.ctl select,.ctl input,.ctl textarea{width:100%;border:0;border-bottom:1px solid var(--ink);background:transparent;padding:5px 0;font-size:12px;border-radius:0;appearance:none;-webkit-appearance:none}
+.ctl select{padding-right:20px;background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - 9px) 55%,calc(100% - 5px) 55%;background-size:4px 4px;background-repeat:no-repeat;cursor:pointer}
+.ctl input,.ctl textarea{border-bottom-color:var(--line)}
+.ctl input:focus,.ctl textarea:focus{border-bottom-color:var(--ink);outline:0}
+.ctl textarea{resize:vertical;min-height:30px;line-height:1.45;overflow:hidden}
+.ctl + .ctl{margin-top:10px}
+.st-kesz select,.st-leadva select{font-weight:700}
+
+/* deliverables */
+.d-group{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,2fr);gap:24px;border-top:1px solid var(--ink);padding:22px 0 60px}
+.d-code{font-size:clamp(40px,5vw,72px);line-height:.9;letter-spacing:-.05em;font-weight:500}
+.d-name{font-size:15px;margin-top:10px}
+.d-dl{font-size:13px;font-weight:700;margin-top:4px}
+.prog{margin-top:28px}
+.prog-n{font-size:28px;font-weight:300;letter-spacing:-.03em}
+.prog-bar{height:1px;background:var(--line);margin-top:8px;position:relative}
+.prog-bar i{position:absolute;left:0;top:-1px;height:3px;background:var(--ink)}
+.d-item{display:grid;grid-template-columns:minmax(0,1fr) 150px 150px;gap:18px;padding:13px 0;border-bottom:1px solid var(--line);align-items:start}
+.d-item>*{min-width:0}
+
+.d-item .n{font-size:14px}
+.d-item .f{font-size:12px;color:var(--muted)}
+.d-item.done .n{font-weight:500}
+
+/* generic tables */
+.t{width:100%;border-collapse:collapse;font-size:13px}
+.t th{text-align:left;font-weight:400;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:0 16px 10px 0;border-bottom:1px solid var(--ink);vertical-align:bottom}
+.t td{padding:14px 16px 14px 0;border-bottom:1px solid var(--line);vertical-align:top;color:var(--body)}
+.t td.strong{color:var(--ink);font-weight:500}
+.t td.r,.t th.r{text-align:right}
+.t tr.total td{border-top:1px solid var(--ink);border-bottom:0;color:var(--ink);font-weight:500}
+.t .ctl input{text-align:right;max-width:90px;margin-left:auto;display:block}
+.wrap{overflow-x:auto}
+.result{display:grid;grid-template-columns:1fr auto;align-items:end;border-top:1px solid var(--ink);margin-top:48px;padding-top:18px}
+.result b{font-size:clamp(34px,4.5vw,66px);font-weight:400;letter-spacing:-.045em;line-height:1}
+.scale{display:grid;grid-template-columns:repeat(5,1fr);margin-top:40px;border-top:1px solid var(--line)}
+.scale div{padding:12px 12px 0 0;font-size:12px;color:var(--muted)}
+.scale div b{display:block;color:var(--ink);font-weight:500;font-size:15px}
+.scale div.on{color:var(--ink)}
+.scale div.on{border-top:3px solid var(--ink);margin-top:-2px}
+.notes{margin-top:48px;columns:2;column-gap:40px;font-size:13px;color:var(--body)}
+.notes p{margin:0 0 12px;break-inside:avoid}
+
+.r-row{display:grid;grid-template-columns:170px minmax(0,1fr) 110px 120px;gap:24px;padding:16px 0;border-bottom:1px solid var(--line)}
+.r-row>*{min-width:0}
+.r-row .a{font-weight:500;font-size:13px}
+.r-row p{margin:0;color:var(--body)}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink);margin-top:56px}
+.facts div{padding:16px 16px 18px 0;border-bottom:1px solid var(--line)}
+.facts b{display:block;font-size:26px;font-weight:300;letter-spacing:-.03em;line-height:1.1}
+.facts span{font-size:11px;color:var(--muted)}
+.q-row{display:grid;grid-template-columns:40px 170px minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);gap:24px;padding:18px 0;border-bottom:1px solid var(--line)}
+.q-row>*{min-width:0}
+.q-row p{margin:0;color:var(--body);font-size:13px}
+.q-row .n{color:var(--muted);font-size:11px}
+
+footer{border-top:1px solid var(--line);padding:18px 0 32px;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}
+.foot{display:grid;grid-template-columns:1fr auto;gap:20px}
+.ro .ctl select,.ro .ctl input,.ro .ctl textarea{pointer-events:none;border-bottom-color:transparent}
+
+@media(max-width:1100px){
+  .nav-links{display:none}.nav{grid-template-columns:1fr auto}
+  .sec-index{grid-column:1/13;position:static}.sec-main{grid-column:1/13}
+  .tl-scale{grid-template-columns:repeat(8,1fr)}.tl-cell{min-height:92px;border-top:1px solid var(--line)}.tl-cell.gap{display:none}.tl-today{display:none}
+  .d-group{grid-template-columns:1fr}
+  .facts{grid-template-columns:1fr 1fr}.notes{columns:1}
+  .hero h1{grid-column:1/13}.hero-copy{grid-column:3/13}.hero-meta{grid-column:1/13}
+}
+@media(max-width:880px){
+  .s-row{grid-template-columns:48px minmax(0,1fr);row-gap:10px}.s-row>*:nth-child(n+3){grid-column:2}
+  .r-row{grid-template-columns:minmax(0,1fr) 170px;row-gap:12px}.r-row .a,.r-row p{grid-column:1/-1}
+  .q-row{grid-template-columns:32px minmax(0,1fr);row-gap:12px}.q-row>*:nth-child(n+3){grid-column:2}
+}
+@media(max-width:820px){
+  .d-item{grid-template-columns:1fr 1fr}.d-item>div:first-child{grid-column:1/-1}
+}
+@media(max-width:620px){
+  .hero-copy{grid-column:1/13}.brand small{display:none}.save-state{display:none}
+  .tl-scale{grid-template-columns:repeat(4,1fr)}.d-item{grid-template-columns:1fr}.d-item>div:first-child{grid-column:auto}
+  .r-row{grid-template-columns:1fr}.r-row>*{grid-column:1!important}
+  .next{grid-template-columns:1fr}.next-side{text-align:left}.scale{grid-template-columns:1fr 1fr 1fr}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{
+  @page{size:A3 landscape;margin:14mm}
+  header.top{display:none}main{padding-top:0}section{padding:40px 0;break-inside:auto}
+  .sec-index{position:static}.row,.d-item,.r-row,.q-row{break-inside:avoid}.s-row.past{opacity:1}
+  .ctl select{background-image:none}
+}
+
+/* multi-page additions */
+.nav-links a.on{color:var(--ink)}
+.nav-links a.on::after{right:0}
+.crumb{grid-column:1/13;margin:0 0 18px;display:flex;align-items:baseline;gap:10px}
+.crumb a{font-size:11px;color:var(--muted)}
+.crumb a:hover{color:var(--ink)}
+.crumb span{font-size:11px;color:var(--line)}
+.crumb b{font-size:11px;color:var(--ink);font-weight:500}
+.pager{grid-column:1/13;display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--ink);margin-top:64px}
+.pager a{padding:22px 0;display:block}
+.pager a.next{text-align:right}
+.pager .pg-meta{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.pager .pg-title{font-size:20px;letter-spacing:-.02em;font-weight:500}
+.pager a:hover .pg-title{text-decoration:underline}
+.pager a.prev{border-right:1px solid var(--line);padding-right:24px}
+.pager a.next{padding-left:24px}
+@media(max-width:620px){.pager{grid-template-columns:1fr}.pager a.prev{border-right:0;border-bottom:1px solid var(--line);padding-right:0}}
+
+/* index / landing */
+.idx-grid{grid-column:1/-1;border-top:1px solid var(--ink);display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+.idx-item{border-bottom:1px solid var(--line);padding:26px 24px 26px 0;display:grid;grid-template-columns:56px 1fr;gap:20px}
+.idx-item:nth-child(odd){border-right:1px solid var(--line);padding-right:24px}
+.idx-item:nth-child(even){padding-left:24px}
+.idx-item .n{font-size:13px;color:var(--muted)}
+.idx-item h3{margin:0 0 6px;font-size:20px;font-weight:500;letter-spacing:-.02em}
+.idx-item p{margin:0;color:var(--body);font-size:13px}
+.idx-item:hover h3{text-decoration:underline}
+@media(max-width:700px){.idx-grid{grid-template-columns:1fr}.idx-item:nth-child(odd){border-right:0;padding-right:0}.idx-item:nth-child(even){padding-left:0}}
+
+/* single-file router additions */
+.tl-cell .mk a{color:inherit;text-decoration:none;display:block}
+a.next-link{display:block}
+.next-link:hover .next-title{text-decoration:underline}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script id="main">"use strict";
+var DATA={"sched": [{"id": "w0", "wk": "1", "date": "2026-09-10", "typ": "Önálló hét", "time": "—", "event": "Nincs kontaktóra a tematika szerint (regisztrációs hét).", "deadline": "—", "content": "—", "naplo": "Tárgyfelvétel, anyagok letöltése.", "evalu": "—", "src": "M6 TVSZ", "kind": "hiv"}, {"id": "w1", "wk": "2", "date": "2026-09-17", "typ": "Kontaktnap", "time": "É81, 8:00–13:00 előadás; 13:00–16:30 konzultáció", "event": "Tematika bemutatása, feladat ismertetése, nyitóelőadások (Zilahi: Kortárs lakhatási tendenciák; Tamás A. M.: Fenntarthatóság és lakhatási válság).", "deadline": "—", "content": "—", "naplo": "Analízisek készítése; esettanulmányok gyűjtése és alapos elemzése; helyszínbejárás. Páros megalakítása.", "evalu": "Szóbeli, közös kiértékelés a köv. konzultáción", "src": "M1, M2, M5, M8, S6, S7, előadás-pptx-ek", "kind": "hiv"}, {"id": "w2", "wk": "3", "date": "2026-09-24", "typ": "Önálló hét", "time": "—", "event": "Javasolt: helyszínbejárás Siklóson (fotók, mérések, Gyüdi út, patakpart, kesztyűgyár); esettanulmány-épület kiválasztása és a 120 mp-es prezentáció összerakása.", "deadline": "—", "content": "—", "naplo": "—", "evalu": "—", "src": "S1 grafikai segédlet", "kind": "sugg"}, {"id": "w3", "wk": "4", "date": "2026-10-01", "typ": "Kontaktnap – ÉRTÉKELT", "time": "É81, 8:00–9:30 előadás; 9:30–16:30 konzultáció (ET bemutatás 8:00–11:00)", "event": "ESETTANULMÁNY bemutatása: max. 120 mp-es gyorsprezentáció a választott épületről.", "deadline": "2026.09.30. (szerda) 23:59, online", "content": "PDF, fájlnév: ET_[hallgató neve].pdf · Fókusz: az épület szerkezeti–téri–funkcionális összefüggései.", "naplo": "Analízisek, esettanulmányok elemzése; min. 3 telepítési lehetőség vizsgálata elsősorban a közlekedési útvonalak és a települési környezet viszonylatában.", "evalu": "Max. 10 pont (10%) · szempontok: tartó- és épületszerkezeti megoldások; esztétikai–funkcionális–műszaki–gazdasági–társadalmi alapvetések; igényes digitális prezentáció", "src": "S1, S2, S4", "kind": "key"}, {"id": "w4", "wk": "5", "date": "2026-10-08", "typ": "Önálló hét", "time": "—", "event": "Javasolt: 3 telepítési változat napló-lapokon (skicc + értékelés), funkcióprogram-mennyiségek tömegben (M2).", "deadline": "—", "content": "—", "naplo": "—", "evalu": "—", "src": "M2, M5, M8, S3", "kind": "sugg"}, {"id": "w5", "wk": "6", "date": "2026-10-15", "typ": "Kontaktnap", "time": "É81, 9:30/11:00–16:30 konzultáció (a tematika cellája két időpontot is ír)", "event": "Analízisek, esettanulmányok szöveges kiértékelése; helyszín és funkcióprogram kiértékelése; telepítési és méretezési alapvetések konzultációja.", "deadline": "—", "content": "—", "naplo": "Funkcionális–térszervezési lehetőségek vizsgálata: min. 3 különböző közlekedési rendszer (szervezési módszer) vizsgálata és kiértékelése, építészeti vetületeikkel. Alaprajzi és metszeti sémák.", "evalu": "Szóbeli visszajelzés", "src": "M2, S2, S3, S5", "kind": "hiv"}, {"id": "w6", "wk": "7", "date": "2026-10-22", "typ": "Önálló hét", "time": "—", "event": "Javasolt: közlekedési rendszer kiválasztása; lakástípus-alaprajzok (A 40 / B 60 / C 80 / D 100 m²) első változata; tömegmodell 1:500 elkezdése.", "deadline": "—", "content": "—", "naplo": "—", "evalu": "—", "src": "M1, M2, S5", "kind": "sugg"}, {"id": "w7", "wk": "8", "date": "2026-10-29", "typ": "Őszi szünet", "time": "—", "event": "ŐSZI SZÜNET — nincs kontaktóra. Javasolt: KK anyag összerajzolása (ez az utolsó teljes hét a leadás előtt).", "deadline": "—", "content": "—", "naplo": "—", "evalu": "—", "src": "S1", "kind": "break"}, {"id": "w8", "wk": "9", "date": "2026-11-05", "typ": "Kontaktnap – ÉRTÉKELT", "time": "É81, 8:00–16:30", "event": "KRITIKUS KONZULTÁCIÓ: max. 7 perces digitális prezentáció a tervezési folyamat aktuális állásáról + TERVEZÉSI NAPLÓ bemutatása (1. pontozás).", "deadline": "2026.11.04. (szerda) 23:59, online", "content": "PDF, fájlnév: KK_[hallgató neve].pdf · koncepcióábrák · axonometria · helyszínrajz · alaprajzok minden eltérő szintről · 2 db metszet · 3 db látványterv (min. és max.) · funkcióprogram-táblázat nyomtatva · tömegmodell 1:500 · napló a formai követelmény (M7) szerint", "naplo": "Tervezés folytatása: 1:200 alaprajzok és metszetek, skiccekkel és téri ábrákkal kiegészítve. Szerkezeti, csomóponti lehetőségek vizsgálata.", "evalu": "KK: max. 15 pont (15%) · Napló: max. 5 pont (5%, saját konzulens adja a konzultációkon bemutatott rajzok mennyisége és szellemi minősége alapján)", "src": "M2, M7, S1, S2", "kind": "key"}, {"id": "w9", "wk": "10", "date": "2026-11-12", "typ": "Önálló hét", "time": "—", "event": "Javasolt: KK-visszajelzések beépítése; 1:200 alaprajzok/metszetek; szerkezeti rendszer és csomóponti változatok.", "deadline": "—", "content": "—", "naplo": "—", "evalu": "—", "src": "S2, S4", "kind": "sugg"}, {"id": "w10", "wk": "11", "date": "2026-11-19", "typ": "Kontaktnap", "time": "É81, 8:00–9:30 előadás; 10:00–16:30 konzultáció", "event": "A naplóban kifejtett, rajzban megjelenített felvetések kiértékelése.", "deadline": "—", "content": "—", "naplo": "1:200 alaprajzok, metszetek ÉS homlokzatok, skiccekkel/téri ábrákkal. Szerkezeti, csomóponti vizsgálat: 1:50 homlokzatrészlet és főfalmetszet. Tervek összerajzolása, dokumentáció véglegesítése.", "evalu": "Szóbeli visszajelzés", "src": "S2, S5", "kind": "hiv"}, {"id": "w11", "wk": "12", "date": "2026-11-26", "typ": "Önálló hét", "time": "—", "event": "Javasolt: főfalmetszet 1:50 kiforgatott homlokzati nézettel; homlokzatok 1:200; látványok (5 db) és tabló-layout vázlata; makett-anyagok beszerzése.", "deadline": "—", "content": "—", "naplo": "—", "evalu": "—", "src": "S1", "kind": "sugg"}, {"id": "w12", "wk": "13", "date": "2026-12-03", "typ": "Kontaktnap", "time": "É81, 8:00–9:30 előadás; 10:00–16:30 konzultáció", "event": "A naplóban kifejtett, rajzban megjelenített felvetések kiértékelése. Utolsó konzultáció a zárás előtt.", "deadline": "—", "content": "—", "naplo": "Tervek összerajzolása, dokumentáció véglegesítése. Tabló nyomtatása + kasírozás (5 mm habkarton) — nyomdai átfutással számolni!", "evalu": "Szóbeli visszajelzés", "src": "S1", "kind": "hiv"}, {"id": "w13", "wk": "14", "date": "2026-12-10", "typ": "Kontaktnap – ÉRTÉKELT", "time": "É81, 8:00–16:30 (a tematika szövege szerint kétnapos alkalom; regisztráció szükséges)", "event": "ZÁRÓ PREZENTÁCIÓ: max. 7 perces digitális összefoglaló + tabló + makett + TERVEZÉSI NAPLÓ (2. pontozás). Csak maradéktalanul befejezett munkával lehet részt venni.", "deadline": "2026.12.09. (szerda) 23:59, online", "content": "PDF, fájlnév: Z_[hallgató neve].pdf · axonometria · koncepcióábrák · helyszínrajz 1:500 · alaprajz minden eltérő szintről 1:200 · 2 db metszet 1:200 · főfalmetszet kiforgatott homlokzati nézettel 1:50 · homlokzatok 1:200 · 5 db látvány (min. és max.) · funkcióprogram-táblázat nyomtatva · tömegmodell 1:500 · 1 db 50×100 cm tabló 5 mm habkartonra kasírozva (tartalma, léptéke szabad) · napló (M7)", "naplo": "—", "evalu": "Záró prezentáció: max. 55 pont (55%) · Makett + tabló együtt: 10 pont (10%) · Napló: max. 5 pont (5%)", "src": "M2, M7, S1", "kind": "key"}, {"id": "w14", "wk": "Pótlás", "date": "2027-01-08", "typ": "Pótlás (vizsgaidőszak)", "time": "É81, 8:00–16:30", "event": "ZÁRÓ PREZENTÁCIÓ PÓTLÁSA — minden formai és tartalmi követelmény azonos a 14. hetivel. Ha a 14. héten nem vesz részt / hiányos anyaggal érkezik: „aláírás megtagadva”, ez az utolsó lehetőség.", "deadline": "2027.01.07. 23:59, online", "content": "Azonos a 14. héttel.", "naplo": "—", "evalu": "Azonos a 14. héttel", "src": "M6 TVSZ", "kind": "key"}], "deliv": [{"id": "d0", "occ": "ET – Esettanulmány", "deadline": "2026.09.30. 23:59", "items": [{"id": "d0_0", "name": "Max. 120 mp-es prezentáció a választott épületről", "fmt": "PDF · ET_[név].pdf"}, {"id": "d0_1", "name": "Szerkezeti–téri–funkcionális összefüggések bemutatása", "fmt": "ábrák, metszetek, elemzés"}, {"id": "d0_2", "name": "Tartó- és épületszerkezeti megoldások", "fmt": "—"}, {"id": "d0_3", "name": "Esztétikai, funkcionális, műszaki, gazdasági, társadalmi alapvetések", "fmt": "—"}]}, {"id": "d1", "occ": "KK – Kritikus konzultáció", "deadline": "2026.11.04. 23:59", "items": [{"id": "d1_0", "name": "Koncepcióábrák", "fmt": "—"}, {"id": "d1_1", "name": "Axonometria", "fmt": "—"}, {"id": "d1_2", "name": "Helyszínrajz", "fmt": "lépték nincs megadva (javasolt 1:500)"}, {"id": "d1_3", "name": "Alaprajzok minden eltérő szintről", "fmt": "lépték nincs megadva (napló: 1:200)"}, {"id": "d1_4", "name": "Metszet – 2 db", "fmt": "—"}, {"id": "d1_5", "name": "Látványterv – pontosan 3 db", "fmt": "—"}, {"id": "d1_6", "name": "Funkcióprogram-táblázat", "fmt": "nyomtatva (M2 kitöltve)"}, {"id": "d1_7", "name": "Tömegmodell", "fmt": "1:500"}, {"id": "d1_8", "name": "Tervezési napló bemutatása", "fmt": "M7: A3 1 mm fehér karton, A3 skiccpausz, biegelés, csipesz"}, {"id": "d1_9", "name": "7 perces digitális prezentáció", "fmt": "PDF · KK_[név].pdf"}]}, {"id": "d2", "occ": "Z – Záró prezentáció", "deadline": "2026.12.09. 23:59", "items": [{"id": "d2_0", "name": "Axonometria", "fmt": "—"}, {"id": "d2_1", "name": "Koncepcióábrák", "fmt": "—"}, {"id": "d2_2", "name": "Helyszínrajz", "fmt": "1:500"}, {"id": "d2_3", "name": "Alaprajz minden eltérő szintről", "fmt": "1:200"}, {"id": "d2_4", "name": "Metszet – 2 db", "fmt": "1:200"}, {"id": "d2_5", "name": "Főfalmetszet kiforgatott homlokzati nézettel", "fmt": "1:50"}, {"id": "d2_6", "name": "Homlokzatok", "fmt": "1:200"}, {"id": "d2_7", "name": "Látvány – pontosan 5 db", "fmt": "—"}, {"id": "d2_8", "name": "Funkcióprogram-táblázat", "fmt": "nyomtatva"}, {"id": "d2_9", "name": "Tömegmodell", "fmt": "1:500"}, {"id": "d2_10", "name": "Összefoglaló tabló", "fmt": "50×100 cm, 5 mm habkartonra kasírozva, tartalom/lépték szabad"}, {"id": "d2_11", "name": "Tervezési napló bemutatása", "fmt": "M7 formai követelmény"}, {"id": "d2_12", "name": "7 perces digitális prezentáció", "fmt": "PDF · Z_[név].pdf"}, {"id": "d2_13", "name": "Regisztráció a záró prezentációra", "fmt": "tantárgyi időbeosztás szerint"}]}], "ev": [{"id": "e0", "name": "Esettanulmány elemzése", "when": "4. hét (10.01.)", "w": 0.1, "max": 10, "crit": "Tartó- és épületszerkezeti megoldások; esztétikai–funkcionális–műszaki–gazdasági–társadalmi alapvetések; igényes digitális prezentáció"}, {"id": "e1", "name": "Kritikus konzultáció", "when": "9. hét (11.05.)", "w": 0.15, "max": 15, "crit": "Ember–épített–természeti környezet kapcsolatai; tartószerkezeti és konstruálási megoldások; alapvetések; igényes digitális prezentáció"}, {"id": "e2", "name": "Tervezési napló (1.)", "when": "9. hét (11.05.)", "w": 0.05, "max": 5, "crit": "Intuitív és ismereteken alapuló megközelítés arányos alkalmazása; önálló, kezdeményező fellépés; bemutatott rajzok mennyisége és szellemi minősége"}, {"id": "e3", "name": "Záró prezentáció", "when": "14. hét (12.10.)", "w": 0.55, "max": 55, "crit": "A tematikában megfogalmazott kimeneti kompetenciák szerint"}, {"id": "e4", "name": "Tervezési napló (2.)", "when": "14. hét (12.10.)", "w": 0.05, "max": 5, "crit": "Mint fent"}, {"id": "e5", "name": "Prezentációs makett és tabló", "when": "14. hét (12.10.)", "w": 0.1, "max": 10, "crit": "Makett és tabló együttes értéke"}], "req": [{"id": "r0", "area": "Részvétel", "text": "A konzultációk és előadások 50%-ának elmulasztása automatikusan „nem teljesítette”. Igazolással nem pótolható. Konzultáció csak a meghirdetett kontaktórákon.", "src": "Tematika; M6"}, {"id": "r1", "area": "Részvétel", "text": "Nem elégséges aktivitás a konzultáción (nincs rajzban bizonyított fejlődés) hiányzásnak minősül — minden alkalomra új rajzzal kell érkezni.", "src": "Tematika"}, {"id": "r2", "area": "Részvétel", "text": "Záró prezentáción csak maradéktalanul befejezett munkával; hiány/távollét esetén „aláírás megtagadva”, pótlás 2027.01.08.", "src": "Tematika"}, {"id": "r3", "area": "Tervezési napló", "text": "Folyamatosan vezetni, minden konzultáción bemutatni; két alkalommal pontozva (KK, záró, 5–5 pont).", "src": "Tematika"}, {"id": "r4", "area": "Tervezési napló", "text": "Formátum: A3 méretű 1 mm fehér karton borító, A3-ra vágott skiccpausz lapok, biegelés a lapozhatóságért, csipeszes rögzítés.", "src": "M7"}, {"id": "r5", "area": "Előadások", "text": "Az előadások ismeretanyagát be kell építeni a tervezési módszertanba; a prezentációkban hivatkozni kell az épületszerkezeti ismeretanyagra.", "src": "Tematika"}, {"id": "r6", "area": "Kötelező irodalom", "text": "A kiadott segédletek és jegyzetek (S1–S7) feldolgozása az önálló feladat része.", "src": "Tematika"}, {"id": "r7", "area": "Munkaforma", "text": "Párokban: közös városépítészeti és telepítési koncepció; utána 30–30 lakás kidolgozása egyéni feladat. Háromfős csoportnál többletfeladat.", "src": "M1"}, {"id": "r8", "area": "Helyszín", "text": "Siklós, volt kesztyűgyár és környezete (barnamező) a Gyüdi út mentén; DK-en lakóterületi feltáróút, ÉNy-on patakparti sétány. Tengely: vár ↔ Máriagyűdi Bazilika.", "src": "M1; M8"}, {"id": "r9", "area": "Meglévő épületek", "text": "A kesztyűgyár részben vagy egészben megtartandó; egyéb értékes ipari épületek megtartása opcionális. Bontást indokolni kell. Megtartott épületekre funkciójavaslat kell (lakóprogram esetén kidolgozva, azon túli hasznosításnál vázlattervi szinten).", "src": "M1"}, {"id": "r10", "area": "Szabályozás", "text": "Teljesen új szabályozási környezet feltételezett: beépítési sűrűséget és magasságot úgy kell megválasztani, hogy példaértékű lakókörnyezetet adjon (alternatíva a városi döntéshozóknak).", "src": "M1"}, {"id": "r11", "area": "Négy pillér", "text": "I Gazdaságosság · II Társadalmi fenntarthatóság · III Ökológia · IV Építészet — a tervnek mindegyikre reagálnia kell, a diskurzusok ismeretében.", "src": "M1; előadások"}, {"id": "r12", "area": "Program", "text": "60 lakás, 4 alaptípus: A 20×40 m², B 20×60 m², C 10×80 m², D 10×100 m² (összesen 3800 m²).", "src": "M2"}, {"id": "r13", "area": "Program", "text": "Földszinti étterem (~600 m² részletes helyiséglistával, elkülönített gazdasági bejárat) + szabadon definiált közösségi funkciók (600 m²) + tárolók (5 m²/lakás, ráccsal elválasztva, lakásmérethez igazítva).", "src": "M1; M2"}, {"id": "r14", "area": "Lakások", "text": "Okos térkihasználás; lehetőség szerint minden lakáshoz használható erkély/terasz (80 m²-ig 5–20 m²; nagyobb/felsőbb lakásnál több); megfelelő természetes fény minden lakásban; vegyes lakói csoportok (családok, idősek, egyedülállók).", "src": "M1"}, {"id": "r15", "area": "Gépészet", "text": "Fűtés, hűtés, gépi szellőzés (lakószobákban is); távhő; gépészetet nem kell tervezni, de helyigényét (aknák, gépészeti helyiségek) igen; karbantartandó elemek hozzáférhetősége; épületfelügyeleti helyiség szellőzése, temperálása.", "src": "M1; M2"}, {"id": "r16", "area": "Hulladék", "text": "8 lakásonként 2 kommunális + 1 papír + 1 műanyag 240 l-es kuka; közlekedési útról kis kitérővel, kuka kihúzása belső tér érintése nélkül; bejáratnál szintkülönbség nem megengedett; falikút, padlóösszefolyó, vödör emelés nélküli töltése; közösségi komposztáló terület.", "src": "M1"}, {"id": "r17", "area": "Mobilitás", "text": "Carsharing feltételezése (20 carsharing + 20 vendégparkoló, 1200 m²; felszíni vagy mélygarázs, elhelyezés opcionális); kerékpár min. 2/lakás, fedett, könnyen megközelíthető (300 m²); közeli elhagyott vasúti pálya reaktiválása feltételezhető.", "src": "M1; M2; S3"}, {"id": "r18", "area": "Kiszolgálás", "text": "Üzemeltetési raktár teherhordó polcokkal (takarítószertártól független); épületfelügyeleti helyiség IT-eszközöknek és dokumentációnak.", "src": "M1"}, {"id": "r19", "area": "Akadálymentesség", "text": "Akadálymentes épített környezet követelményei (segédlet).", "src": "S5"}, {"id": "r20", "area": "Grafika", "text": "Magas műszaki és grafikai minőség elvárás; a verbális megfogalmazás nem elég.", "src": "Tematika; S1"}, {"id": "r21", "area": "Fájlnevek", "text": "ET_[név].pdf · KK_[név].pdf · Z_[név].pdf — mind online, 23:59-es határidővel.", "src": "Tematika"}], "prog": [{"id": "p0", "name": "Lakások (A 800 + B 1200 + C 800 + D 1000)", "val": 3800, "note": "60 lakás, 4 típus"}, {"id": "p1", "name": "Közösségi funkciók (tárolók 300 + szabad 600)", "val": 900, "note": ""}, {"id": "p2", "name": "Étterem (15 helyiség összesen)", "val": 600, "note": "Vendégtér 250, grillterasz 120, konyha 75 stb."}, {"id": "p3", "name": "Általános kiszolgáló helyiségek", "val": 285, "note": "Hulladék 40, bio 25, erősáram 15, épületfelügyelet 20, közmű 15, takarító 35, karbantartó 30, közösségi raktár 50, kültéri raktár 55"}, {"id": "p4", "name": "Közlekedők (vertikális + horizontális)", "val": 900, "note": "Gépészeti aknák: M2-ben mennyiség nélkül"}], "src": [{"id": "s0", "code": "M1", "title": "Feladatkiírás – Korszerű lakhatás", "use": "Alapdokumentum; négy pillér, program, műszaki elvárások. Végig.", "up": "Igen", "file": "M1_Feladatkiírás.pdf / .docx"}, {"id": "s1", "code": "M2", "title": "Funkcióprogram", "use": "Helyiséglista; KK-ra és zárásra kitöltve, nyomtatva kell leadni.", "up": "Igen", "file": "M2_Funkcióprogram.xlsx"}, {"id": "s2", "code": "M3", "title": "Tervezési alaptérkép", "use": "Helyszínrajz, telepítés, 1:500 tömegmodell.", "up": "NEM", "file": "— (kérni kell)"}, {"id": "s3", "code": "M4", "title": "Szabályozási tervlap", "use": "Jelenlegi szabályozás (bár új szabályozás feltételezett).", "up": "NEM", "file": "— (kérni kell)"}, {"id": "s4", "code": "M5", "title": "Ortofotó (a listában) / Schwarzplan (feltöltve)", "use": "Telepítési analízis, városszövet.", "up": "Részben", "file": "M5_Schwarzplan.pdf — a listában ortofotó szerepel"}, {"id": "s5", "code": "M6", "title": "PTE TVSZ", "use": "Hiányzás, pótlás, jegyszerzés szabályai.", "up": "Igen", "file": "M6_TVSZ.pdf"}, {"id": "s6", "code": "M7", "title": "Tervezési napló formai követelmény", "use": "Napló kivitelezése (A3 karton + skiccpausz + csipesz).", "up": "Igen", "file": "M7_Tervezési_napló_formai_követelmény.pdf"}, {"id": "s7", "code": "M8", "title": "Komplex 1–3 térbeli összefüggések", "use": "Helyszín a Komplex 1 területével (volt laktanya) együtt; tájékozódás. (A tematika listájában nem szerepel.)", "up": "Igen", "file": "M8_Komplex_1-3_térbeli_összefüggések.pdf"}, {"id": "s8", "code": "S1", "title": "Tamás A. M., Kovács-Andor K.: Grafikai segédlet", "use": "ET, KK, záró prezentációk és tabló grafikája.", "up": "Igen", "file": "S1_…Grafikai_segédlet.pdf"}, {"id": "s9", "code": "S2", "title": "Középülettervezési segédlet", "use": "Étterem, közösségi funkciók, szerkezeti gondolkodás.", "up": "Igen", "file": "S2_Középülettervezési_segédlet.pdf"}, {"id": "s10", "code": "S3", "title": "Közlekedési és parkolási segédlet", "use": "Carsharing, vendégparkoló, kerékpár, gazdasági feltárás.", "up": "Igen", "file": "S3_Közlekedési_és_parkolási_segédlet.pdf"}, {"id": "s11", "code": "S4", "title": "Moravánszky Á.: Lépcső-terek", "use": "Vertikális közlekedők, közösségi találkozási terek.", "up": "Igen", "file": "S4_Moravánszky_Ákos__Lépcső-terek.pdf"}, {"id": "s12", "code": "S5", "title": "Pandula A., P. Farka Zs., Zsilinszky Gy.: Akadálymentes épített környezet", "use": "Lakások, közlekedők, hulladéktároló szintkülönbség-mentessége.", "up": "Igen", "file": "S5_…akadálymentes….pdf"}, {"id": "s13", "code": "S6", "title": "Jelinek Cs., Pósfai Zs.: A lakhatási válságra adott közösségi válaszok", "use": "Társadalmi fenntarthatóság pillér, közösségi funkciók koncepciója.", "up": "Igen", "file": "S6_Jelinek_Csaba_Pósfai_Zsuzsanna_….pdf"}, {"id": "s14", "code": "S7", "title": "Moravánszky Á.: Az építészet helye", "use": "Helyhez kötött koncepció, meglévő ipari épületek kezelése.", "up": "Igen", "file": "S7_Moravánszky_Ákos_-_Az_építészet_helye.pdf"}, {"id": "s15", "code": "E1", "title": "Zilahi P.: Kortárs lakhatási tendenciák (előadás, 09.17.)", "use": "Bécsi modell, 4 pilléres értékelés, precedensek.", "up": "Igen", "file": "Zilahi_Péter_-_Kortárs_lakhatási_tendenciák.pptx"}, {"id": "s16", "code": "E2", "title": "Tamás A. M.: Fenntarthatóság és lakhatási válság (előadás)", "use": "Fenntarthatóság, greenwashing, városépítészeti elvek.", "up": "Igen", "file": "Tamás_Anna_Mária_-_Fenntarthatóság_és_lakhatási_válság.pptx"}, {"id": "s17", "code": "Ajánlott", "title": "Bielefeld (Ed.): Planning Architecture, Birkhäuser 2016", "use": "Tervezési alapok, méretezés.", "up": "Nem (könyv)", "file": "—"}, {"id": "s18", "code": "Ajánlott", "title": "Deplazes (Ed.): Constructing Architecture, Birkhäuser 2013", "use": "Szerkezetek, főfalmetszet 1:50.", "up": "Nem (könyv)", "file": "—"}], "q": [{"id": "q0", "topic": "Esettanulmány hete", "what": "Szöveges rész: 5. oktatási hét. Heti táblázat: 4. hét, beadás 2026.09.30.", "ask": "A 09.30-i beadás / 10.01-i bemutatás a mérvadó?"}, {"id": "q1", "topic": "Kritikus konzultáció hete", "what": "Szöveges rész: 8. hét. Heti táblázat: 8. hét őszi szünet, KK a 9. héten, beadás 2026.11.04.", "ask": "Megerősítés: 11.05. a KK?"}, {"id": "q2", "topic": "Záró prezentáció napjai", "what": "Szöveg: „két napos” alkalom. Táblázat: egy nap (12.10., 8:00–16:30). Regisztráció szükséges.", "ask": "Mi a második nap, és hol/mikor kell regisztrálni?"}, {"id": "q3", "topic": "6. heti program", "what": "A 6. hét cellájában két eltérő időpont (11:00 és 9:30) és két naplófeladat szerepel, a második a 4. heti telepítési feladat ismétlése.", "ask": "Melyik a 6. heti tényleges program és naplófeladat?"}, {"id": "q4", "topic": "4. heti időpontok", "what": "Előadás 8:00–9:30, konzultáció 9:30–16:30, ET-bemutatás 8:00–11:00 — átfedésben.", "ask": "Mikor lesz pontosan az ET-bemutatás?"}, {"id": "q5", "topic": "Hiányzó mellékletek", "what": "M3 tervezési alaptérkép és M4 szabályozási tervlap nincs a projektben; M5 a listán ortofotó, a fájl Schwarzplan.", "ask": "Hol érhető el az M3, M4 és az ortofotó (DWG is)?"}, {"id": "q6", "topic": "Páros / egyéni munkarészek", "what": "Közös városépítészeti és telepítési koncepció, utána 30–30 lakás egyéni. A leadások fájlneve egyéni (ET_/KK_/Z_[név]).", "ask": "Közös vagy egyéni: helyszínrajz, tömegmodell, étterem, közösségi funkciók, tabló, makett? Mikortól egyéni a munka?"}, {"id": "q7", "topic": "Funkcióprogram megosztása", "what": "Az M2 a teljes 60 lakásra és egy étteremre szól.", "ask": "Az étterem/közösségi/kiszolgáló program is felezendő, vagy a pár egyike dolgozza ki?"}, {"id": "q8", "topic": "Tömegmodell és makett", "what": "KK és záró: „tömegmodell 1:500”; értékelésben „prezentációs makett és tabló” 10 pont.", "ask": "A záróra a tömegmodell 1:500 maga a prezentációs makett, vagy külön részletesebb makett kell? Digitális fotó is elég a KK-n?"}, {"id": "q9", "topic": "Léptékek a KK-n", "what": "A KK kötelező tartalmánál nincs lépték megadva (a záróhoz van).", "ask": "Elvárt lépték a KK-n (1:500 / 1:200)?"}, {"id": "q10", "topic": "Tárgykód", "what": "Fejlécben EPM320MNEM, a táblázatban EPM320MLEM.", "ask": "Csak adminisztratív — Neptunban ellenőrizni."}]};
+var S={savedAt:null,v:{}};
+var KEY="k3-siklos-draft";
+var art=null, dirty=false, readOnly=false, saving=false, localOnly=false;
+var STATUS=["Nincs elkezdve","Folyamatban","Kész","Leadva","—"];
+
+var PAGES=[
+ {id:"sched",num:"01",label:"Ütemterv",title:"Hétről hétre: mi kell, mikorra.",lead:"Kiemelt vonal jelöli a pontozott alkalmakat. A javasolt saját mérföldkövek nem hivatalosak, a levelező rend önálló heteire szólnak.",fn:null,wrap:true,idx:"A csütörtöki kontaktnapok, a leadási határidők és a naplófeladatok hétről hétre."},
+ {id:"deliv",num:"02",label:"Leadandók",title:"Három leadás, tételes ellenőrzőlista.",lead:"",fn:null,wrap:false,idx:"ET, KK és Z: mi kell bennük, és melyik páros/egyéni munkarész."},
+ {id:"eval",num:"03",label:"Értékelés",title:"Súlyozás és pontkalkulátor.",lead:"A kapott pontokat a Kapott oszlopba írva az oldal kiszámolja az eddigi jegyet.",fn:null,wrap:false,idx:"A hat munkarész súlya, és egy élő jegy-számítás."},
+ {id:"req",num:"04",label:"Követelmények",title:"Minden „kell” egy helyen.",lead:"Érdemes végigmenni rajta a kritikus konzultáció és a záró prezentáció előtt.",fn:null,wrap:true,idx:"A TVSZ, a tematika és az M1 minden előírása egy ellenőrizhető listában."},
+ {id:"prog",num:"05",label:"Program",title:"Funkcióprogram és gyors számok.",lead:"Az M2 elvárt területei; a tervezett értékeket beírva látszik az eltérés.",fn:null,wrap:false,idx:"Az M2 funkcióprogram összesítve, saját tervezett m²-ekkel."},
+ {id:"src",num:"06",label:"Források",title:"Mellékletek és segédletek.",lead:"Az M3 alaptérkép és az M4 szabályozási tervlap nincs a projektben, ezeket kérni kell.",fn:null,wrap:false,idx:"Mi mire való a kiadott mellékletek és segédletek közül, és mi hiányzik."},
+ {id:"q",num:"07",label:"Tisztázandó",title:"Ellentmondások, kérdések a konzulensnek.",lead:"",fn:null,wrap:false,idx:"11 pont, ahol az anyagok egymásnak ellentmondanak vagy hiányosak."}
+];
+
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function g(id,f,def){var o=S.v[id];return o&&o[f]!=null?o[f]:def}
+function today(){var t=new Date();return new Date(t.getFullYear(),t.getMonth(),t.getDate())}
+function pd(s){var a=s.split("-");return new Date(+a[0],+a[1]-1,+a[2])}
+function days(s){return Math.round((pd(s)-today())/864e5)}
+function hdate(s){var a=s.split("-");return a[0]+"."+a[1]+"."+a[2]+"."}
+function dayTxt(n){return n<0?"elmúlt":n===0?"ma":n+" nap"}
+function deadlineISO(r){var m=(r.deadline||"").match(/(\d{4})\.(\d{2})\.(\d{2})/);return m?m[1]+"-"+m[2]+"-"+m[3]:null}
+function sel(id,f,opts,def){var v=g(id,f,def);return '<div class="ctl"><select data-k="'+id+'" data-f="'+f+'" aria-label="'+f+'">'+opts.map(function(o){return '<option'+(o===v?' selected':'')+'>'+esc(o)+'</option>'}).join("")+'</select></div>'}
+function inp(id,f,ph,type){return '<div class="ctl"><input '+(type?'type="'+type+'" inputmode="decimal" ':'')+'data-k="'+id+'" data-f="'+f+'" placeholder="'+esc(ph||"")+'" value="'+esc(g(id,f,""))+'"></div>'}
+function ta(id,f,ph){return '<div class="ctl"><textarea rows="1" data-k="'+id+'" data-f="'+f+'" placeholder="'+esc(ph||"")+'">'+esc(g(id,f,""))+'</textarea></div>'}
+function srcTags(s){return (s||"").split(/,\s*/).filter(function(x){return x&&x!=="—"}).map(function(x){return '<span class="tag">'+esc(x)+'</span>'}).join("")}
+function auto(t){t.style.height="auto";t.style.height=Math.max(30,t.scrollHeight)+"px"}
+function lsGet(){try{return JSON.parse(localStorage.getItem(KEY)||"null")}catch(e){return null}}
+function lsSet(o){try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
+function lsDel(){try{localStorage.removeItem(KEY)}catch(e){}}
+(function restore(){var d=lsGet();if(d&&d.base===S.savedAt&&d.v){S.v=d.v;dirty=!!d.dirty;if(!dirty)localOnly=true}else if(d){lsDel()}})();
+
+/* ---- renderers (identical logic to the section data) ---- */
+function renderTimeline(){
+  var weeks=DATA.sched.filter(function(r){return /^\d+$/.test(r.wk)});
+  var pot=DATA.sched.filter(function(r){return r.wk==="Pótlás"})[0];
+  var abbr={4:["ET","Esettanulmány"],9:["KK","Kritikus konz."],14:["Z","Záró"]};
+  var h='<div class="tl"><div class="tl-head"><span class="meta">Félév / 14 hét + pótlás</span><span class="meta">Csütörtökök</span></div><div class="tl-scale" id="tlscale">';
+  weeks.forEach(function(r){
+    var c=r.kind==="key"?"key":r.kind==="hiv"&&r.typ.indexOf("Kontakt")===0?"contact":r.kind==="break"?"brk":"";
+    var a=abbr[+r.wk];
+    h+='<div class="tl-cell '+c+'"><span class="w num">'+esc(r.wk)+'</span><span class="d num">'+hdate(r.date).slice(5)+'</span>'+(c==="key"||c==="contact"?'<div class="bar"></div>':'<div style="height:21px"></div>')+'<div class="mk">'+(a?'<a href="#sched"><b>'+a[0]+'</b>'+a[1]+'</a>':(c==="contact"?"Konzultáció":""))+'</div></div>';
+  });
+  h+='<div class="tl-cell gap"></div><div class="tl-cell key"><span class="w">Pót.</span><span class="d num">'+hdate(pot.date).slice(5)+'</span><div class="bar"></div><div class="mk"><a href="#sched"><b>Z</b>Pótlás</a></div></div>';
+  h+='<div class="tl-today" id="tltoday"><span>Ma</span></div></div></div>';
+  var nx=DATA.sched.filter(function(r){var dl=deadlineISO(r);return dl&&days(dl)>=0})[0];
+  if(nx){var dl=deadlineISO(nx);
+    var name=nx.event.split(":")[0];name=name.charAt(0).toUpperCase()+name.slice(1).toLowerCase();
+    var wkLabel=nx.wk==="Pótlás"?"Pótlás":nx.wk+". hét";
+    h+='<a class="next-link" href="#sched"><div class="next"><div><div class="meta" style="margin-bottom:10px">Következő leadás</div><div class="next-title">'+esc(name)+'<br>'+esc(nx.deadline.replace(/,?\s*online/,""))+'</div></div><div class="next-side"><b class="num">'+dayTxt(days(dl))+'</b><span class="meta">'+esc(wkLabel)+'</span></div></div></a>';}
+  return h;
+}
+function placeToday(){
+  var sc=document.getElementById("tlscale"),m=document.getElementById("tltoday");if(!sc||!m)return;
+  var weeks=DATA.sched.filter(function(r){return /^\d+$/.test(r.wk)});
+  var cells=sc.querySelectorAll(".tl-cell"),t=today(),first=pd(weeks[0].date);
+  var idx=Math.floor((t-first)/(7*864e5));
+  if(idx<0||idx>13){m.style.display="none";return}
+  var into=((t-first)/(7*864e5))-idx;var c=cells[idx];
+  m.style.left=(c.offsetLeft+c.offsetWidth*into)+"px";
+}
+function renderSched(){
+  return DATA.sched.map(function(r){
+    var n=days(r.date),past=n<0&&r.wk!=="Pótlás";
+    var cls=r.kind==="key"?"key":r.kind==="sugg"?"sugg":r.kind==="break"?"brk":(r.typ==="Önálló hét"?"self":"");
+    var st=g(r.id,"status",(r.kind==="hiv"&&r.wk!=="1")||r.kind==="key"?"Nincs elkezdve":"—");
+    var hasDl=r.deadline&&r.deadline!=="—", hasC=r.content&&r.content!=="—", hasN=r.naplo&&r.naplo!=="—", hasE=r.evalu&&r.evalu!=="—";
+    return '<div class="row s-row '+cls+(past?' past':'')+'">'+
+      '<div class="wk num">'+esc(r.wk==="Pótlás"?"P":r.wk)+'</div>'+
+      '<div class="dt num">'+hdate(r.date)+'<small>'+dayTxt(n)+'</small></div>'+
+      '<div><div class="meta">'+esc(r.typ)+(r.kind==="sugg"?' / javasolt saját mérföldkő':'')+'</div><h3>'+esc(r.event)+'</h3>'+
+        (r.time&&r.time!=="—"?'<div class="lbl">Időpont</div><p class="small">'+esc(r.time)+'</p>':'')+
+        (hasDl?'<div class="dl">Leadás: '+esc(r.deadline)+'</div>':'')+
+        (hasC?'<div class="lbl">Kötelező tartalom</div><p class="small">'+esc(r.content)+'</p>':'')+
+        (hasE?'<div class="lbl">Értékelés</div><p class="small">'+esc(r.evalu)+'</p>':'')+
+      '</div>'+
+      '<div>'+(hasN?'<div class="lbl">Tervezési napló, következő alkalomig</div><p class="small">'+esc(r.naplo)+'</p>':'')+
+        (r.src&&r.src!=="—"?'<div class="lbl">Forrás</div><div>'+srcTags(r.src)+'</div>':'')+'</div>'+
+      '<div class="'+(st==="Kész"?"st-kesz":st==="Leadva"?"st-leadva":"")+'"><div class="lbl">Státusz</div>'+sel(r.id,"status",STATUS,st)+ta(r.id,"note","Megjegyzés")+'</div>'+
+    '</div>';
+  }).join("");
+}
+function renderDeliv(){
+  return DATA.deliv.map(function(grp){
+    var done=grp.items.filter(function(it){var s=g(it.id,"status","Nincs elkezdve");return s==="Kész"||s==="Leadva"}).length;
+    var pct=Math.round(done/grp.items.length*100);
+    var parts=grp.occ.split(" – ");
+    return '<div class="d-group"><div><div class="d-code">'+esc(parts[0])+'</div><div class="d-name">'+esc(parts[1]||"")+'</div><div class="d-dl num">'+esc(grp.deadline)+'</div>'+
+      '<div class="prog"><span class="prog-n num">'+done+' / '+grp.items.length+'</span> <span class="meta">&nbsp;kész</span><div class="prog-bar"><i style="width:'+pct+'%"></i></div></div></div>'+
+      '<div>'+grp.items.map(function(it){var s=g(it.id,"status","Nincs elkezdve");
+        return '<div class="d-item'+(s==="Kész"||s==="Leadva"?' done':'')+'"><div><div class="n">'+esc(it.name)+'</div>'+(it.fmt&&it.fmt!=="—"?'<div class="f">'+esc(it.fmt)+'</div>':'')+ta(it.id,"note","Megjegyzés")+'</div>'+
+        sel(it.id,"who",["Tisztázandó","Közös (páros)","Egyéni"],g(it.id,"who","Tisztázandó"))+sel(it.id,"status",STATUS,s)+'</div>'}).join("")+'</div></div>';
+  }).join("");
+}
+function grade(p){return p>=.85?[5,"kiváló"]:p>=.7?[4,"jó"]:p>=.55?[3,"közepes"]:p>=.4?[2,"elégséges"]:[1,"elégtelen"]}
+function renderEval(){
+  var sum=0,cnt=0,max=0,gradedMax=0;
+  var rows=DATA.ev.map(function(e){var v=parseFloat(String(g(e.id,"pts","")).replace(",","."));max+=e.max;if(!isNaN(v)){sum+=v;cnt++;gradedMax+=e.max}
+    return '<tr><td class="strong">'+esc(e.name)+'</td><td class="num">'+esc(e.when)+'</td><td class="r num">'+Math.round(e.w*100)+'%</td><td class="r num">'+e.max+'</td><td class="r">'+inp(e.id,"pts","—","text")+'</td><td>'+esc(e.crit)+'</td></tr>'}).join("");
+  var p=cnt&&gradedMax?sum/gradedMax:null,gr=p!=null?grade(p):null;
+  var h='<div class="wrap"><table class="t"><thead><tr><th>Munkarész</th><th>Alkalom</th><th class="r">Súly</th><th class="r">Max.</th><th class="r">Kapott</th><th>Szempontok</th></tr></thead><tbody>'+rows+
+    '<tr class="total"><td>Összesen</td><td></td><td class="r num">100%</td><td class="r num">'+max+'</td><td class="r num">'+(cnt?sum:"—")+'</td><td></td></tr></tbody></table></div>';
+  h+='<div class="result"><div><div class="meta" style="margin-bottom:10px">Eddigi eredmény</div><b class="num">'+(cnt?sum+" / "+gradedMax+" pont az értékelt részekből":"Még nincs pont")+'</b></div><div class="next-side"><b class="num">'+(gr?gr[0]:"—")+'</b><span class="meta">'+(gr?gr[1]+" · "+Math.round(p*100)+"%":"jegy")+'</span></div></div>';
+  var sc=[[5,"kiváló","85–100%"],[4,"jó","70–84%"],[3,"közepes","55–69%"],[2,"elégséges","40–54%"],[1,"elégtelen","0–39%"]];
+  h+='<div class="scale">'+sc.map(function(s){return '<div class="'+(gr&&gr[0]===s[0]?"on":"")+'"><b>'+s[0]+' '+s[1]+'</b>'+s[2]+'</div>'}).join("")+'</div>';
+  h+='<div class="notes"><p><b>Elégséges:</b> értékelhető építőművészeti koncepció és alapvető működési szisztéma.</p><p><b>Közepes:</b> a koncepció csak értékelhető, de a funkcionális és szerkezeti rendszer koherens.</p><p><b>Jó:</b> megalapozott koncepció, koherens a funkcionális és szerkezeti összefüggésekkel.</p><p><b>Kiváló:</b> izgalmas koncepció, kiválóan működő, formailag–szerkezetileg koherens, professzionálisan feldolgozott munka.</p><p><b>Figyelem:</b> a munkarészek megléte nem jelenti automatikusan a teljesítést; külalaki hiányosság önmagában elégtelent okozhat.</p></div>';
+  return h;
+}
+function renderReq(){
+  return DATA.req.map(function(r,i){var prev=i&&DATA.req[i-1].area===r.area;
+    return '<div class="r-row"><div class="a">'+(prev?'':esc(r.area))+'</div><p>'+esc(r.text)+'</p><div>'+srcTags(r.src.replace(/;/g,","))+'</div>'+sel(r.id,"check",["—","Igen","Részben","Nem"],g(r.id,"check","—"))+'</div>'}).join("");
+}
+function renderProg(){
+  var tot=0,tp=0,any=false;
+  var rows=DATA.prog.map(function(p){tot+=p.val;var v=parseFloat(String(g(p.id,"plan","")).replace(",","."));var d="";if(!isNaN(v)){any=true;tp+=v;var diff=v-p.val;d=(diff>0?"+":"")+Math.round(diff)+" m² / "+(diff>0?"+":"")+Math.round(diff/p.val*100)+"%"}
+    return '<tr><td class="strong">'+esc(p.name)+'</td><td class="r num">'+p.val.toLocaleString("hu-HU")+'</td><td class="r">'+inp(p.id,"plan","—","text")+'</td><td class="r num">'+d+'</td><td>'+esc(p.note)+'</td></tr>'}).join("");
+  var td=any?((tp-tot>0?"+":"")+Math.round(tp-tot)+" m² / "+(tp-tot>0?"+":"")+Math.round((tp-tot)/tot*100)+"%"):"";
+  var h='<div class="wrap"><table class="t"><thead><tr><th>Funkciócsoport</th><th class="r">Elvárt m²</th><th class="r">Tervezett m²</th><th class="r">Eltérés</th><th>Megjegyzés</th></tr></thead><tbody>'+rows+
+    '<tr class="total"><td>Mindösszesen, parkolás nélkül</td><td class="r num">'+tot.toLocaleString("hu-HU")+'</td><td class="r num">'+(any?Math.round(tp).toLocaleString("hu-HU"):"—")+'</td><td class="r num">'+td+'</td><td></td></tr>'+
+    '<tr><td class="strong">Kerékpárparkolás</td><td class="r num">300</td><td></td><td></td><td>Min. 2 kerékpár / lakás, fedett</td></tr><tr><td class="strong">Autóparkolás</td><td class="r num">1 200</td><td></td><td></td><td>20 carsharing + 20 vendég, elhelyezés opcionális</td></tr></tbody></table></div>';
+  var f=[["60","lakás, ebből 30 egyéni"],["20 / 20 / 10 / 10","A 40 · B 60 · C 80 · D 100 m²"],["8","kukacsoport (8 lakásonként)"],["16 / 8 / 8","kommunális / papír / műanyag, 240 l"],["120","kerékpárhely minimum"],["300 m²","lakástároló, 5 m² / lakás"],["5–20 m²","erkély / terasz lakásonként, 80 m²-ig"],["Távhő","fűtés, hűtés, gépi szellőzés"]];
+  h+='<div class="facts">'+f.map(function(x){return '<div><b class="num">'+x[0]+'</b><span>'+x[1]+'</span></div>'}).join("")+'</div>';
+  return h;
+}
+function renderSrc(){
+  return '<div class="wrap"><table class="t"><thead><tr><th>Jel</th><th>Cím</th><th>Mire kell</th><th>Projektben</th><th style="min-width:120px">Feldolgozva</th></tr></thead><tbody>'+
+  DATA.src.map(function(s){return '<tr><td class="strong num">'+esc(s.code)+'</td><td class="strong">'+esc(s.title)+'<div class="f" style="font-weight:400;color:var(--muted);font-size:11px;margin-top:3px">'+esc(s.file)+'</div></td><td>'+esc(s.use)+'</td><td>'+(s.up==="NEM"?'<span class="tag ink">Hiányzik</span>':esc(s.up))+'</td><td>'+sel(s.id,"done",["—","Igen","Részben","Nem"],g(s.id,"done","—"))+'</td></tr>'}).join("")+'</tbody></table></div>';
+}
+function renderQ(){
+  return '<div class="list">'+DATA.q.map(function(q,i){return '<div class="q-row"><div class="n num">'+String(i+1).padStart(2,"0")+'</div><div><b style="font-weight:500">'+esc(q.topic)+'</b></div><p>'+esc(q.what)+'</p><p style="color:var(--ink)">'+esc(q.ask)+'</p><div><div class="lbl" style="margin-top:0">Válasz / döntés</div>'+ta(q.id,"ans","A konzultáción elhangzott válasz")+'</div></div>'}).join("")+'</div>';
+}
+var RENDERERS={sched:renderSched,deliv:renderDeliv,eval:renderEval,req:renderReq,prog:renderProg,src:renderSrc,q:renderQ};
+PAGES.forEach(function(p){p.fn=RENDERERS[p.id]});
+function pageOf(id){for(var i=0;i<PAGES.length;i++)if(PAGES[i].id===id)return PAGES[i];return null}
+
+/* ---- chrome ---- */
+function navHtml(active){
+  var items=[['','Áttekintés']].concat(PAGES.map(function(p){return ['#'+p.id,p.num+' '+p.label]}));
+  return items.map(function(it){var id=it[0]?it[0].slice(1):"";var on=(active===id)?" on":"";
+    var parts=it[1].split(" ");var isIdx=!it[0];
+    return '<a href="#'+id+'" class="'+on.trim()+'">'+(isIdx?'':'<b>'+parts[0]+'</b>')+(isIdx?it[1]:parts.slice(1).join(" "))+'</a>'}).join("");
+}
+function chromeHead(active){
+  return '<header class="top"><div class="shell nav"><a class="brand" href="#">KOMPLEX 3 <small>SIKLÓS / 2026–27 ŐSZ</small></a><nav class="nav-links" aria-label="Oldalak">'+navHtml(active)+'</nav><div class="save"><span class="save-state" id="savestate"></span><button class="btn" id="savebtn" type="button">Mentés</button></div></div></header>';
+}
+function chromeFoot(){
+  return '<footer><div class="shell foot"><span>Forrás: tantárgyi tematika 2026.08.26., M1, M2, M6, M7, M8</span><span id="savedat"></span></div></footer>';
+}
+function pagerHtml(id){
+  var ids=[""].concat(PAGES.map(function(p){return p.id}));
+  var i=ids.indexOf(id),prev=i>0?ids[i-1]:null,next=i<ids.length-1?ids[i+1]:null;
+  function label(pid){if(pid==="")return "Áttekintés";var p=pageOf(pid);return p.num+" "+p.label}
+  var h='<div class="shell"><div class="grid12"><div class="pager">';
+  h+= prev!=null ? '<a class="prev" href="#'+prev+'"><div class="pg-meta">Előző</div><div class="pg-title">'+label(prev)+'</div></a>' : '<div></div>';
+  h+= next!=null ? '<a class="next" href="#'+next+'"><div class="pg-meta">Következő</div><div class="pg-title">'+label(next)+'</div></a>' : '<div></div>';
+  h+='</div></div></div>';
+  return h;
+}
+function indexBody(){
+  var items=PAGES.map(function(p){return '<a class="idx-item" href="#'+p.id+'"><div class="n num">'+p.num+'</div><div><h3>'+esc(p.label)+'</h3><p>'+esc(p.idx)+'</p></div></a>'}).join("");
+  return '<main id="top"><div class="shell hero"><div class="grid12"><div class="meta kick">PTE MIK / Építész MSc / Komplex tervezés 3</div><h1>Korszerű lakhatás, Siklós.<span>Félévi ütemterv és elvárások.</span></h1>'+
+    '<div class="hero-meta"><div><strong>Feladat</strong>60 lakásos bérház, páros telepítés, 30 lakás egyéni</div><div><strong>Kontaktóra</strong>Csütörtök 7:45–15:45, É81</div><div><strong>Tantárgyfelelős</strong>Dr. Zilahi Péter</div><div><strong>Leadás</strong>Online PDF, 23:59, ET_ / KK_ / Z_[név]</div></div>'+
+    '<p class="hero-copy">A tantárgyi tematika, az M1 feladatkiírás és az M2 funkcióprogram hét oldalra bontva. A státuszok, pontok, tervezett területek és válaszok szerkeszthetők és mentődnek.</p></div>'+
+    '<div id="tlwrap" style="margin-top:88px">'+renderTimeline()+'</div></div></main>'+
+    '<section><div class="shell sec"><div class="idx-grid">'+items+'</div></div></section>';
+}
+function sectionBody(p){
+  return '<main><section><div class="shell sec">'+
+    '<div class="crumb"><a href="#">Áttekintés</a><span>/</span><b>'+p.num+' '+esc(p.label)+'</b></div>'+
+    '<div class="sec-index"><b>'+p.num+'</b> / '+esc(p.label)+'</div>'+
+    '<div class="sec-main"><h2 class="sec-title">'+esc(p.title)+'</h2>'+(p.lead?'<p class="sec-lead">'+esc(p.lead)+'</p>':'')+
+    '<div id="content"></div></div></div></section>'+pagerHtml(p.id)+'</main>';
+}
+
+function route(keepScroll){
+  keepScroll=keepScroll===true;var oldY=keepScroll?window.scrollY:0;
+  var hash=(location.hash||"").replace(/^#\/?/,"");
+  var p=pageOf(hash);
+  var app=document.getElementById("app");
+  document.title=(p?p.num+" "+p.label:"Áttekintés")+" — Komplex 3, Siklós";
+  if(!p){
+    app.innerHTML=chromeHead("")+indexBody()+chromeFoot();
+    placeToday();
+  }else{
+    app.innerHTML=chromeHead(p.id)+sectionBody(p)+chromeFoot();
+    document.getElementById("content").innerHTML=p.wrap?'<div class="list">'+p.fn()+'</div>':p.fn();
+    document.querySelectorAll("textarea").forEach(auto);
+  }
+  updateSave();
+  if(keepScroll){requestAnimationFrame(function(){window.scrollTo(0,oldY)})}else{window.scrollTo(0,0)}
+}
+window.addEventListener("hashchange",route);
+window.addEventListener("resize",placeToday);
+
+/* ---- save ---- */
+function updateSave(){
+  var s=document.getElementById("savestate"),b=document.getElementById("savebtn"),f=document.getElementById("savedat");if(!s)return;
+  if(readOnly){s.textContent="Csak olvasható";b.disabled=true}
+  else if(saving){s.textContent="Mentés…";b.disabled=true}
+  else if(dirty){s.textContent="Nem mentett változások";s.className="save-state dirty";b.disabled=false}
+  else{s.textContent=localOnly?"Mentve ebben a böngészőben":(S.savedAt?"Mentve":"Nincs változás");s.className="save-state";b.disabled=true}
+  if(f)f.textContent=S.savedAt?"Utoljára mentve: "+new Date(S.savedAt).toLocaleString("hu-HU"):"";
+}
+function msg(t){var s=document.getElementById("savestate");if(s){s.textContent=t;s.className="save-state dirty"}}
+function setVal(el){
+  var k=el.getAttribute("data-k"),f=el.getAttribute("data-f");
+  S.v[k]=S.v[k]||{};S.v[k][f]=el.value;dirty=true;localOnly=false;
+  lsSet({base:S.savedAt,v:S.v,dirty:true});
+}
+document.addEventListener("input",function(e){var el=e.target;if(!el.hasAttribute||!el.hasAttribute("data-k"))return;setVal(el);if(el.tagName==="TEXTAREA")auto(el);updateSave()});
+document.addEventListener("change",function(e){var el=e.target;if(!el.hasAttribute||!el.hasAttribute("data-k"))return;setVal(el);if(el.tagName==="SELECT"||el.getAttribute("data-f")==="pts"||el.getAttribute("data-f")==="plan"){route(true)}});
+document.addEventListener("click",function(e){if(e.target&&e.target.id==="savebtn")save()});
+window.addEventListener("beforeunload",function(e){if(dirty&&!saving&&!localOnly){e.preventDefault();e.returnValue=""}});
+
+function buildDoc(next){
+  var css=document.getElementById("css").textContent;
+  var main=document.getElementById("main").textContent;
+  var d=JSON.stringify(next.savedAt);
+  var v=JSON.stringify(next.v).replace(/<\//g,"<\\/");
+  var body=main.replace(/^var S=.*;\n/m,'var S={savedAt:'+d+',v:'+v+'};\n').replace(/^var DATA=.*?;\n/m,'var DATA='+JSON.stringify(DATA).replace(/<\//g,"<\\/")+';\n');
+  return "<!doctype html>\n<html lang=\"hu\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<title>Komplex 3 — Siklós — Ütemterv 2026/27</title>\n<link rel=\"icon\" href=\"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27%3E%3Ctext y=%2713%27 font-size=%2713%27%3E%F0%9F%93%90%3C/text%3E%3C/svg%3E\">\n<style id=\"css\">"+css+"</style>\n</head>\n<body>\n<div id=\"app\"></div>\n<script id=\"main\">"+body+"<\/script>\n</body>\n</html>\n";
+}
+function save(){
+  if(!dirty||saving||readOnly)return;
+  if(!art){localOnly=true;dirty=false;lsSet({base:S.savedAt,v:S.v,dirty:false});updateSave();return}
+  saving=true;updateSave();
+  var next={savedAt:new Date().toISOString(),v:S.v};
+  art.publish(buildDoc(next)).then(function(){S.savedAt=next.savedAt;saving=false;dirty=false;localOnly=false;lsDel();updateSave();}).catch(function(err){
+    saving=false;var c=err&&err.code;
+    if(c==="conflict"){msg("Újabb verzió töltődik be")}
+    else if(c==="not_writer"||c==="not_granted"||c==="consent_required"||c==="capability_disabled"||c==="capability_removed"||c==="not_declared"){readOnly=true;art=null;route();}
+    else if(c==="rate_limited"){msg("Túl gyakori mentés, próbáld pár perc múlva");dirty=true;updateSave()}
+    else if(c==="too_large"){msg("Túl nagy a tartalom a mentéshez");updateSave()}
+    else{msg("A mentés nem sikerült, próbáld újra");dirty=true;updateSave()}
+  });
+}
+
+route();
+try{if(window.claude&&window.claude.use){window.claude.use("artifact").then(function(a){art=a||null;updateSave()}).catch(function(){})}}catch(e){}
+</script>
+</body>
+</html>
