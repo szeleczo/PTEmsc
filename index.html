@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Komplex 3 — Siklós — Ütemterv 2026/27</title>
+<title>2026/27 ősz — Féléves ütemterv</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27%3E%3Ctext y=%2713%27 font-size=%2713%27%3E%F0%9F%93%90%3C/text%3E%3C/svg%3E">
 <style id="css">
 *,*::before,*::after{box-sizing:border-box}
@@ -17,7 +17,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .num{font-variant-numeric:tabular-nums}
 
 header.top{position:fixed;inset:0 0 auto 0;z-index:50;background:#fff;border-bottom:1px solid var(--line)}
-.nav{height:56px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:32px}
+.nav{height:56px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:32px}
 .brand{font-size:13px;font-weight:700;letter-spacing:.02em;white-space:nowrap}
 .brand small{margin-left:10px;font-size:10px;color:var(--muted);font-weight:400;letter-spacing:.12em}
 .nav-links{display:flex;gap:22px;font-size:11px;justify-content:center}
@@ -33,7 +33,7 @@ header.top{position:fixed;inset:0 0 auto 0;z-index:50;background:#fff;border-bot
 .btn:disabled{border-color:var(--line);color:var(--muted);cursor:default}
 :focus-visible{outline:1px solid var(--ink);outline-offset:2px}
 
-main{padding-top:56px}
+main{padding-top:95px}
 .hero{padding:clamp(72px,9vw,128px) 0 48px}
 .grid12{display:grid;grid-template-columns:repeat(12,1fr);column-gap:20px}
 .hero .meta.kick{grid-column:1/6}
@@ -66,7 +66,7 @@ main{padding-top:56px}
 section{padding:clamp(72px,9vw,128px) 0}
 section+section{border-top:1px solid var(--line)}
 .sec{display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
-.sec-index{grid-column:1/3;align-self:start;position:sticky;top:84px;font-size:10px;letter-spacing:.13em;color:var(--muted);text-transform:uppercase}
+.sec-index{grid-column:1/3;align-self:start;position:sticky;top:123px;font-size:10px;letter-spacing:.13em;color:var(--muted);text-transform:uppercase}
 .sec-index b{color:var(--ink);font-weight:500}
 .sec-main{grid-column:3/13;min-width:0}
 .sec-title{margin:0 0 18px;font-size:clamp(30px,3.8vw,58px);line-height:1.03;letter-spacing:-.045em;font-weight:400;max-width:980px}
@@ -212,10 +212,125 @@ footer{border-top:1px solid var(--line);padding:18px 0 32px;font-size:10px;color
 .idx-item:hover h3{text-decoration:underline}
 @media(max-width:700px){.idx-grid{grid-template-columns:1fr}.idx-item:nth-child(odd){border-right:0;padding-right:0}.idx-item:nth-child(even){padding-left:0}}
 
+@media(max-width:700px){
+  .subject-nav a{padding:0 12px}
+  .subject-nav a:first-child{padding-left:0;padding-right:14px}
+  .subject-nav a.on::after{left:12px;right:12px}
+  .subject-nav a:first-child.on::after{left:0}
+  .subject-nav .name{display:none}
+}
+
 /* single-file router additions */
 .tl-cell .mk a{color:inherit;text-decoration:none;display:block}
 a.next-link{display:block}
 .next-link:hover .next-title{text-decoration:underline}
+
+
+/* semester dashboard */
+.subject-bar{height:39px;border-top:1px solid var(--line);background:#fff}
+.subject-nav{height:38px;display:flex;align-items:stretch;gap:0;overflow-x:auto;overflow-y:hidden;white-space:nowrap;scrollbar-width:none}
+.subject-nav::-webkit-scrollbar{display:none}
+.subject-nav a{position:relative;display:flex;align-items:center;gap:7px;padding:0 16px;border-right:1px solid var(--line);font-size:10px;letter-spacing:.04em;color:var(--muted);flex:0 0 auto}
+.subject-nav a:first-child{padding-left:0;padding-right:18px}
+.subject-nav a:hover,.subject-nav a.on{color:var(--ink)}
+.subject-nav a.on::after{content:"";position:absolute;left:16px;right:16px;bottom:0;height:2px;background:var(--ink)}
+.subject-nav a:first-child.on::after{left:0}
+.subject-nav .code{font-weight:600;color:var(--ink);letter-spacing:.02em}
+.subject-nav .name{font-weight:400}
+.sem-hero{padding:clamp(68px,8vw,112px) 0 46px}
+.sem-hero h1{grid-column:1/12;margin:28px 0 0;font-size:clamp(48px,7vw,108px);line-height:.91;letter-spacing:-.058em;font-weight:500}
+.sem-hero h1 span{display:block;font-weight:300}
+.sem-intro{grid-column:7/11;margin:38px 0 0;max-width:600px;font-size:clamp(15px,1.15vw,18px);line-height:1.55;color:var(--body)}
+.sem-facts{grid-column:1/6;margin-top:38px;display:grid;grid-template-columns:repeat(2,1fr);gap:18px 24px;font-size:11px;color:var(--muted)}
+.sem-facts strong{display:block;color:var(--ink);font-weight:500;font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px}
+.course-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--ink)}
+.course-card{display:grid;grid-template-columns:62px minmax(0,1fr);gap:20px;padding:26px 24px 28px 0;border-bottom:1px solid var(--line);min-width:0}
+.course-card:nth-child(odd){border-right:1px solid var(--line);padding-right:24px}
+.course-card:nth-child(even){padding-left:24px}
+.course-card .code{font-size:12px;color:var(--muted);letter-spacing:.04em}
+.course-card h3{margin:0 0 6px;font-size:21px;line-height:1.15;font-weight:500;letter-spacing:-.025em}
+.course-card p{margin:0;color:var(--body);font-size:13px;max-width:620px}
+.course-card .course-meta{margin-top:14px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.course-card:hover h3{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+
+.sem-wrap{overflow-x:auto;padding-bottom:6px}
+.sem-timeline{min-width:1140px;border-top:1px solid var(--ink);display:grid;grid-template-columns:190px repeat(14,minmax(62px,1fr))}
+.sem-corner,.sem-week,.sem-course,.sem-cell{min-height:66px;border-bottom:1px solid var(--line)}
+.sem-corner{padding:12px 12px 12px 0}
+.sem-week{padding:10px 7px;border-left:1px solid var(--line);font-size:10px;color:var(--muted)}
+.sem-week b{display:block;font-size:12px;color:var(--ink);font-weight:500}
+.sem-week.current{border-top:3px solid var(--ink);padding-top:7px}
+.sem-course{position:sticky;left:0;z-index:2;background:#fff;padding:13px 18px 12px 0}
+.sem-course b{display:block;font-size:12px;font-weight:500;line-height:1.15}
+.sem-course span{display:block;margin-top:3px;font-size:10px;color:var(--muted)}
+.sem-cell{border-left:1px solid var(--line);padding:8px 6px;position:relative;font-size:9px;line-height:1.22;color:var(--body)}
+.sem-cell.current{background:linear-gradient(to bottom,var(--soft),transparent 55%)}
+.sem-mark{display:block;margin-bottom:5px;white-space:normal}
+.sem-mark::before{content:"";display:block;height:2px;background:var(--line);margin-bottom:5px}
+.sem-mark.key{color:var(--ink);font-weight:500}
+.sem-mark.key::before{height:3px;background:var(--ink)}
+.sem-mark.deadline{color:var(--ink);font-weight:500}
+.sem-mark.deadline::before{height:1px;background:var(--ink)}
+.sem-empty{color:var(--muted);font-size:10px;padding-top:17px}
+
+.deadline-list{border-top:1px solid var(--ink)}
+.deadline-row{display:grid;grid-template-columns:110px 160px minmax(0,1fr) 170px;gap:24px;padding:17px 0;border-bottom:1px solid var(--line);align-items:start}
+.deadline-row>*{min-width:0}
+.deadline-date{font-size:16px;letter-spacing:-.02em;font-weight:500}
+.deadline-date small{display:block;font-size:10px;color:var(--muted);font-weight:400;letter-spacing:.06em;margin-top:2px}
+.deadline-course{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;padding-top:3px}
+.deadline-title{font-size:14px;line-height:1.3}
+.deadline-row.past{opacity:.45}
+.deadline-row.near .deadline-date{font-weight:700}
+
+.course-hero{padding:clamp(68px,8vw,108px) 0 44px}
+.course-hero .meta.kick{grid-column:1/7}
+.course-hero h1{grid-column:1/12;margin:26px 0 0;font-size:clamp(42px,6.6vw,98px);line-height:.92;letter-spacing:-.055em;font-weight:500}
+.course-hero h1 span{display:block;font-weight:300}
+.course-hero .hero-meta{grid-column:1/8}
+.course-hero .hero-copy{grid-column:8/13;margin-top:40px}
+.course-jump{margin-top:58px;border-top:1px solid var(--ink);display:flex;gap:20px;flex-wrap:wrap;padding-top:12px;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.course-jump a:hover{color:var(--ink)}
+.course-section{padding:72px 0}
+.course-section+.course-section{border-top:1px solid var(--line)}
+.course-section .sec-main{grid-column:3/13}
+.course-section .sec-index{top:84px}
+.simple-row{display:grid;grid-template-columns:96px 150px minmax(0,1fr) 180px;gap:24px;padding:18px 0;border-bottom:1px solid var(--line)}
+.simple-row>*{min-width:0}
+.simple-row .week{font-size:18px;font-weight:500;line-height:1}
+.simple-row .date{font-size:12px;color:var(--body)}
+.simple-row h3{margin:0;font-size:15px;line-height:1.3;font-weight:500}
+.simple-row p{margin:5px 0 0;font-size:12.5px;color:var(--body)}
+.simple-row.key{border-top:1px solid var(--ink);margin-top:-1px}
+.simple-row.past{opacity:.5}
+.check-row{display:grid;grid-template-columns:minmax(0,1fr) 180px;gap:24px;padding:14px 0;border-bottom:1px solid var(--line);align-items:start}
+.check-row .n{font-size:13px}
+.check-row .f{font-size:11px;color:var(--muted);margin-top:3px}
+.notice{border-top:1px solid var(--ink);border-bottom:1px solid var(--line);padding:18px 0;color:var(--body);max-width:760px}
+.notice b{color:var(--ink);font-weight:500}
+.mini-facts{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink);margin-top:42px}
+.mini-facts div{padding:14px 18px 16px 0;border-bottom:1px solid var(--line)}
+.mini-facts b{display:block;font-size:22px;font-weight:300;letter-spacing:-.03em}
+.mini-facts span{display:block;font-size:10px;color:var(--muted);margin-top:2px}
+.weight-row{display:grid;grid-template-columns:minmax(0,1fr) 100px;gap:20px;padding:13px 0;border-bottom:1px solid var(--line)}
+.weight-row b{font-weight:500}.weight-row span{text-align:right;font-variant-numeric:tabular-nums}
+.source-note{font-size:10px;color:var(--muted);margin-top:24px;letter-spacing:.04em}
+
+@media(max-width:1100px){
+  .sem-intro{grid-column:3/13}.sem-facts{grid-column:1/13}
+  .course-hero .hero-copy{grid-column:3/13}.course-hero .hero-meta{grid-column:1/13}
+  .simple-row{grid-template-columns:70px 120px minmax(0,1fr)}.simple-row>div:last-child{grid-column:3}
+}
+@media(max-width:760px){
+  .course-grid{grid-template-columns:1fr}.course-card:nth-child(odd){border-right:0;padding-right:0}.course-card:nth-child(even){padding-left:0}
+  .deadline-row{grid-template-columns:92px minmax(0,1fr);gap:10px 18px}.deadline-course{grid-column:2}.deadline-title{grid-column:2}.deadline-row>div:last-child{grid-column:2}
+  .sem-intro{grid-column:1/13}.sem-facts{grid-template-columns:1fr 1fr}
+  .simple-row{grid-template-columns:54px minmax(0,1fr);gap:10px 16px}.simple-row .date{grid-column:2}.simple-row>div:nth-child(3),.simple-row>div:last-child{grid-column:2}
+  .mini-facts{grid-template-columns:1fr 1fr}.check-row{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+  .sem-facts{grid-template-columns:1fr}.course-card{grid-template-columns:48px 1fr}.mini-facts{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
@@ -226,8 +341,7 @@ var S={savedAt:null,v:{}};
 var KEY="k3-siklos-draft";
 var art=null, dirty=false, readOnly=false, saving=false, localOnly=false;
 var STATUS=["Nincs elkezdve","Folyamatban","Kész","Leadva","—"];
-
-var PAGES=[
+var K3_PAGES=[
  {id:"sched",num:"01",label:"Ütemterv",title:"Hétről hétre: mi kell, mikorra.",lead:"Kiemelt vonal jelöli a pontozott alkalmakat. A javasolt saját mérföldkövek nem hivatalosak, a levelező rend önálló heteire szólnak.",fn:null,wrap:true,idx:"A csütörtöki kontaktnapok, a leadási határidők és a naplófeladatok hétről hétre."},
  {id:"deliv",num:"02",label:"Leadandók",title:"Három leadás, tételes ellenőrzőlista.",lead:"",fn:null,wrap:false,idx:"ET, KK és Z: mi kell bennük, és melyik páros/egyéni munkarész."},
  {id:"eval",num:"03",label:"Értékelés",title:"Súlyozás és pontkalkulátor.",lead:"A kapott pontokat a Kapott oszlopba írva az oldal kiszámolja az eddigi jegyet.",fn:null,wrap:false,idx:"A hat munkarész súlya, és egy élő jegy-számítás."},
@@ -235,6 +349,70 @@ var PAGES=[
  {id:"prog",num:"05",label:"Program",title:"Funkcióprogram és gyors számok.",lead:"Az M2 elvárt területei; a tervezett értékeket beírva látszik az eltérés.",fn:null,wrap:false,idx:"Az M2 funkcióprogram összesítve, saját tervezett m²-ekkel."},
  {id:"src",num:"06",label:"Források",title:"Mellékletek és segédletek.",lead:"Az M3 alaptérkép és az M4 szabályozási tervlap nincs a projektben, ezeket kérni kell.",fn:null,wrap:false,idx:"Mi mire való a kiadott mellékletek és segédletek közül, és mi hiányzik."},
  {id:"q",num:"07",label:"Tisztázandó",title:"Ellentmondások, kérdések a konzulensnek.",lead:"",fn:null,wrap:false,idx:"11 pont, ahol az anyagok egymásnak ellentmondanak vagy hiányosak."}
+];
+var PAGES=K3_PAGES;
+
+var COURSE_META={
+  k3:{code:"K3",label:"Komplex tervezés 3",title:"Siklósi társasházak tervezése.",desc:"60 lakásos bérház, páros telepítés, 30 lakás egyéni kidolgozása.",when:"Csütörtök 7:45–15:45 · É81",teacher:"Dr. Zilahi Péter"},
+  tm1:{code:"TM1",label:"Tervezésmódszertan 1",title:"Építészeti elmélet — Tervezésmódszertan 1.",desc:"Önálló kutatásból absztrakt, esszé és infografika.",when:"Péntek 18:30–20:00 · A008 · 2, 4, 6, 9, 11, 13, 14. hét",teacher:"Dr. Rácz Tamás"},
+  mv:{code:"MV",label:"Műemlékvédelem",title:"Építészeti elmélet — Műemlékvédelem.",desc:"Örökségvédelmi elmélet és esettanulmányok; a félév írásbeli vizsgával zárul.",when:"Péntek 11:15–12:45 · A202 · 2, 4, 6, 9, 11, 13, 14. hét",teacher:"Dr. Kovács-Andor Krisztián"},
+  eco:{code:"ÖKO",label:"Ökológia és energetika",title:"Építészeti ökológia és energetika.",desc:"Háromfős csoportban legfeljebb 1500 m²-es, választott klímára reagáló irodaház.",when:"A kapott PPT-ben nincs órarend vagy beadási dátum",teacher:"Dr. Baranyai Bálint · Katona Ádám"}
+};
+
+var TM_WEEKS=[
+ {wk:2,date:"2026-09-18",kind:"class",title:"Féléves tematika, feladatkiadás; falu és város szerepe a XXI. században.",detail:"Előadás · Tóth Z. (1997), 1–3. fejezet"},
+ {wk:4,date:"2026-10-02",kind:"class",title:"Konzultáció a választott téma kutatásáról; hivatkozások szabályai.",detail:"Konzultáció"},
+ {wk:6,date:"2026-10-16",kind:"key",title:"Absztrakt, tartalomjegyzék és irodalomjegyzék beadása.",detail:"23:59 · Teams · ezen az órán: lakás/otthon fogalma, történeti áttekintés",deadline:"2026-10-16"},
+ {wk:9,date:"2026-11-06",kind:"key",title:"Absztrakt, tartalomjegyzék és irodalomjegyzék pótbeadása.",detail:"23:59 · Teams · előadás: kis lakások, minimum alapterületek",deadline:"2026-11-06"},
+ {wk:11,date:"2026-11-20",kind:"class",title:"Konzultáció a választott téma kutatásáról.",detail:"Konzultáció"},
+ {wk:13,date:"2026-12-04",kind:"key",title:"Esszé és infografika leadása.",detail:"23:59 · Teams · előadás: CIAM kongresszusai",deadline:"2026-12-04"},
+ {wk:14,date:"2026-12-11",kind:"key",title:"Esszé és infografika pótleadása; félévzárás.",detail:"23:59 · Teams",deadline:"2026-12-11"},
+ {wk:"V1",date:"2026-12-18",kind:"key",title:"Esszé és infografika pótlás utáni beadása.",detail:"23:59 · Teams · legfeljebb 70%",deadline:"2026-12-18"}
+];
+var TM_CHECK=[
+ {id:"tm_abs",name:"Absztrakt",fmt:"A4 álló PDF · előlap + absztrakt + tartalomjegyzék + irodalomjegyzék · Vezeteknev_Keresztnev_absztrakt.pdf"},
+ {id:"tm_essay",name:"Esszé",fmt:"A4 álló · min. 8 írott oldal / kb. 16 000 karakter · szabályos tartalomjegyzék, konklúzió, irodalom- és képjegyzék · Vezeteknev_Keresztnev_essze.pdf"},
+ {id:"tm_info",name:"Infografika",fmt:"Az esszé vizuális kivonata · PDF · formai megkötés nincs · Vezeteknev_Keresztnev_info.pdf"},
+ {id:"tm_ai",name:"MI-használat feltüntetése, ha releváns",fmt:"A tematikában megadott nyilatkozat a szövegtörzs vége és a referenciák előtt"}
+];
+var TM_WEIGHTS=[['Absztrakt','15%'],['Esszé','50%'],['Infografika','25%'],['Jelenlét / órai aktivitás','10%']];
+
+var MV_WEEKS=[
+ {wk:2,date:"2026-09-18",kind:"class",title:"Definíciók és alapelvek. A műemlékeket károsító tényezők.",detail:"Örökségvédelem, 5–22. o."},
+ {wk:4,date:"2026-10-02",kind:"class",title:"Nemzetközi és magyar műemlékvédelem története. Nemzetközi charták. Szervezet.",detail:"Örökségvédelem, 23–56. o."},
+ {wk:6,date:"2026-10-16",kind:"class",title:"A pécsi világörökség.",detail:"Örökségvédelem, 57–80. o."},
+ {wk:9,date:"2026-11-06",kind:"class",title:"Műemléki helyreállítások típusai. Esettanulmányok.",detail:"Örökségvédelem, 45–53. o."},
+ {wk:11,date:"2026-11-20",kind:"class",title:"Műemléki helyreállítások típusai. Esettanulmányok.",detail:"Örökségvédelem, 45–53. o."},
+ {wk:13,date:"2026-12-04",kind:"class",title:"Romemlékek helyreállítása.",detail:"Örökségvédelem, 45–53. o."},
+ {wk:14,date:"2026-12-11",kind:"key",title:"Előrehozott vizsga.",detail:"Írásbeli · minimum 40% a sikeres teljesítéshez",deadline:"2026-12-11"}
+];
+
+var ECO_CHECK=[
+ {id:"eco_site",name:"Helyszínvizsgálat, adatgyűjtés és klímaanalízis",fmt:"Hőmérséklet, napsugárzás, szél, páratartalom, csapadék; évszakos viszonyok"},
+ {id:"eco_massing",name:"Klímahatékony tömegformálás",fmt:"A választott égöv előnyeinek és hátrányainak összevetése"},
+ {id:"eco_envelope",name:"Épületburok és üvegezési arány",fmt:"Tájolás, árnyékolás, anyag- és szerkezetválasztás"},
+ {id:"eco_context",name:"Környezeti és városszöveti kapcsolatok",fmt:"Szomszéd épületek, közösségi terek, zöld területek"},
+ {id:"eco_hvac",name:"Fűtés, hűtés és szellőztetés koncepciója",fmt:"A választott klímához és évszakos igényekhez igazítva"},
+ {id:"eco_summary",name:"Klímakoncepció és az épület működésének összefoglalása",fmt:"A tervdokumentáció része"},
+ {id:"eco_siteplan",name:"Helyszínrajz",fmt:"1:500"},
+ {id:"eco_plans",name:"Alaprajzok",fmt:"1:100"},
+ {id:"eco_sections",name:"Metszetek",fmt:"1:100"},
+ {id:"eco_elev",name:"Homlokzatok",fmt:"1:100"},
+ {id:"eco_views",name:"Látványtervek",fmt:"Választott grafikai megjelenítéssel"},
+ {id:"eco_program",name:"Helyiségprogram",fmt:"Legfeljebb 1500 m²; fő funkciók kb. 1200 m²"}
+];
+
+var DEADLINES=[
+ {id:"w3",date:"2026-09-30",course:"K3",title:"Esettanulmány · online PDF · 23:59",href:"#k3/sched"},
+ {id:"tm_6",date:"2026-10-16",course:"TM1",title:"Absztrakt + tartalomjegyzék + irodalomjegyzék · Teams · 23:59",href:"#tm1"},
+ {id:"w8",date:"2026-11-04",course:"K3",title:"Kritikus konzultáció anyaga · online PDF · 23:59",href:"#k3/sched"},
+ {id:"tm_9",date:"2026-11-06",course:"TM1",title:"Absztrakt pótleadása · Teams · 23:59",href:"#tm1"},
+ {id:"tm_13",date:"2026-12-04",course:"TM1",title:"Esszé + infografika · Teams · 23:59",href:"#tm1"},
+ {id:"w13",date:"2026-12-09",course:"K3",title:"Záró prezentáció anyaga · online PDF · 23:59",href:"#k3/sched"},
+ {id:"tm_14",date:"2026-12-11",course:"TM1",title:"Esszé + infografika pótleadása · Teams · 23:59",href:"#tm1"},
+ {id:"mv_14",date:"2026-12-11",course:"MV",title:"Előrehozott írásbeli vizsga",href:"#mv"},
+ {id:"tm_V1",date:"2026-12-18",course:"TM1",title:"Pótlás utáni esszé + infografika · max. 70% · 23:59",href:"#tm1"},
+ {id:"w14",date:"2027-01-07",course:"K3",title:"Záró prezentáció pótlási anyaga · online · 23:59",href:"#k3/sched"}
 ];
 
 function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
@@ -358,64 +536,109 @@ var RENDERERS={sched:renderSched,deliv:renderDeliv,eval:renderEval,req:renderReq
 PAGES.forEach(function(p){p.fn=RENDERERS[p.id]});
 function pageOf(id){for(var i=0;i<PAGES.length;i++)if(PAGES[i].id===id)return PAGES[i];return null}
 
-/* ---- chrome ---- */
-function navHtml(active){
-  var items=[['','Áttekintés']].concat(PAGES.map(function(p){return ['#'+p.id,p.num+' '+p.label]}));
-  return items.map(function(it){var id=it[0]?it[0].slice(1):"";var on=(active===id)?" on":"";
-    var parts=it[1].split(" ");var isIdx=!it[0];
-    return '<a href="#'+id+'" class="'+on.trim()+'">'+(isIdx?'':'<b>'+parts[0]+'</b>')+(isIdx?it[1]:parts.slice(1).join(" "))+'</a>'}).join("");
+
+
+/* ---- semester / course chrome ---- */
+function courseActive(routeKey,course){return routeKey===course||routeKey.indexOf(course+"/")===0}
+function subjectNavHtml(active){
+  var items=[
+    ['', 'Félév', 'Áttekintés'],
+    ['k3','K3','Komplex 3'],
+    ['tm1','TM1','Tervezésmódszertan'],
+    ['mv','MV','Műemlékvédelem'],
+    ['eco','ÖKO','Ökológia']
+  ];
+  return items.map(function(it){
+    var on=(it[0]===''?active==='':courseActive(active,it[0]))?' on':'';
+    return '<a class="'+on.trim()+'" href="#'+it[0]+'"><span class="code">'+it[1]+'</span><span class="name">'+it[2]+'</span></a>';
+  }).join('');
 }
 function chromeHead(active){
-  return '<header class="top"><div class="shell nav"><a class="brand" href="#">KOMPLEX 3 <small>SIKLÓS / 2026–27 ŐSZ</small></a><nav class="nav-links" aria-label="Oldalak">'+navHtml(active)+'</nav><div class="save"><span class="save-state" id="savestate"></span><button class="btn" id="savebtn" type="button">Mentés</button></div></div></header>';
+  return '<header class="top"><div class="shell nav"><a class="brand" href="#">2026/27 ŐSZ <small>ÉPÍTÉSZ MSC</small></a><div class="save"><span class="save-state" id="savestate"></span><button class="btn" id="savebtn" type="button">Mentés</button></div></div><div class="subject-bar"><div class="shell"><nav class="subject-nav" aria-label="Tantárgyak">'+subjectNavHtml(active)+'</nav></div></div></header>';
 }
 function chromeFoot(){
-  return '<footer><div class="shell foot"><span>Forrás: tantárgyi tematika 2026.08.26., M1, M2, M6, M7, M8</span><span id="savedat"></span></div></footer>';
+  return '<footer><div class="shell foot"><span>Féléves dashboard · forrás: feltöltött tantárgyi tematikák és feladatkiírások</span><span id="savedat"></span></div></footer>';
 }
-function pagerHtml(id){
-  var ids=[""].concat(PAGES.map(function(p){return p.id}));
-  var i=ids.indexOf(id),prev=i>0?ids[i-1]:null,next=i<ids.length-1?ids[i+1]:null;
-  function label(pid){if(pid==="")return "Áttekintés";var p=pageOf(pid);return p.num+" "+p.label}
-  var h='<div class="shell"><div class="grid12"><div class="pager">';
-  h+= prev!=null ? '<a class="prev" href="#'+prev+'"><div class="pg-meta">Előző</div><div class="pg-title">'+label(prev)+'</div></a>' : '<div></div>';
-  h+= next!=null ? '<a class="next" href="#'+next+'"><div class="pg-meta">Következő</div><div class="pg-title">'+label(next)+'</div></a>' : '<div></div>';
-  h+='</div></div></div>';
-  return h;
+function routeParts(){var h=(location.hash||'').replace(/^#\/?/,'');return h.split('/').filter(Boolean)}
+function isoWeekDate(w){return DATA.sched.filter(function(r){return String(r.wk)===String(w)})[0]?.date||''}
+function weekCurrent(w){var d=isoWeekDate(w);if(!d)return false;var a=pd(d),b=new Date(a.getTime()+7*864e5);var t=today();return t>=a&&t<b}
+function shortMD(s){var d=pd(s);return String(d.getMonth()+1).padStart(2,'0')+'.'+String(d.getDate()).padStart(2,'0')+'.'}
+function courseName(code){return code==='K3'?'Komplex 3':code==='TM1'?'Tervezésmódszertan':code==='MV'?'Műemlékvédelem':'Ökológia'}
+
+function semMark(kind,label){return '<span class="sem-mark '+kind+'">'+esc(label)+'</span>'}
+function semesterTimeline(){
+  var k3={},tm={},mv={};
+  DATA.sched.forEach(function(r){if(/^\d+$/.test(String(r.wk))){var arr=k3[r.wk]=k3[r.wk]||[];if(r.kind==='key')arr.push(['key',r.wk==='4'?'ET':r.wk==='9'?'KK':r.wk==='14'?'Z':'Értékelt']);else if(r.typ&&r.typ.indexOf('Kontakt')===0)arr.push(['','Konz.']);}});
+  TM_WEEKS.forEach(function(r){if(typeof r.wk==='number'){var arr=tm[r.wk]=tm[r.wk]||[];arr.push([r.kind==='key'?'key':'',r.kind==='key'?(r.wk===6?'ABS':r.wk===9?'PÓT':r.wk===13?'ESSZÉ':'PÓT'):'Óra']);}});
+  MV_WEEKS.forEach(function(r){var arr=mv[r.wk]=mv[r.wk]||[];arr.push([r.kind==='key'?'key':'',r.kind==='key'?'VIZSGA':'Óra']);});
+  var rows=[['K3','Komplex tervezés 3',k3,'k3'],['TM1','Tervezésmódszertan 1',tm,'tm1'],['MV','Műemlékvédelem',mv,'mv'],['ÖKO','Ökológia és energetika',{},'eco']];
+  var h='<div class="sem-wrap"><div class="sem-timeline"><div class="sem-corner"><span class="meta">Tantárgy / hét</span></div>';
+  for(var w=1;w<=14;w++){var d=isoWeekDate(w);h+='<div class="sem-week'+(weekCurrent(w)?' current':'')+'"><b class="num">'+w+'</b><span class="num">'+shortMD(d)+'</span></div>';}
+  rows.forEach(function(r){h+='<a class="sem-course" href="#'+r[3]+'"><b>'+r[0]+'</b><span>'+esc(r[1])+'</span></a>';for(var w=1;w<=14;w++){var marks=r[2][w]||[];h+='<div class="sem-cell'+(weekCurrent(w)?' current':'')+'">';if(r[0]==='ÖKO'&&w===1)h+='<div class="sem-empty">nincs dátum a PPT-ben</div>';marks.forEach(function(m){h+=semMark(m[0],m[1])});h+='</div>';}});
+  h+='</div></div>';return h;
 }
-function indexBody(){
-  var items=PAGES.map(function(p){return '<a class="idx-item" href="#'+p.id+'"><div class="n num">'+p.num+'</div><div><h3>'+esc(p.label)+'</h3><p>'+esc(p.idx)+'</p></div></a>'}).join("");
-  return '<main id="top"><div class="shell hero"><div class="grid12"><div class="meta kick">PTE MIK / Építész MSc / Komplex tervezés 3</div><h1>Siklósi<span>társasházak tervezése.</span></h1>'+
-    '<div class="hero-meta"><div><strong>Feladat</strong>60 lakásos bérház, páros telepítés, 30 lakás egyéni</div><div><strong>Kontaktóra</strong>Csütörtök 7:45–15:45, É81</div><div><strong>Tantárgyfelelős</strong>Dr. Zilahi Péter</div><div><strong>Leadás</strong>Online PDF, 23:59, ET_ / KK_ / Z_[név]</div></div>'+
-    '<p class="hero-copy"></p></div>'+
-    '<div id="tlwrap" style="margin-top:88px">'+renderTimeline()+'</div></div></main>'+
-    '<section><div class="shell sec"><div class="idx-grid">'+items+'</div></div></section>';
+function deadlineList(){
+  return '<div class="deadline-list">'+DEADLINES.map(function(d){var n=days(d.date),st=g(d.id,'status','Nincs elkezdve'),cl=(n<0?' past':'')+(n>=0&&n<=7?' near':'');return '<div class="deadline-row'+cl+'"><div class="deadline-date num">'+shortMD(d.date)+'<small>'+dayTxt(n)+'</small></div><div class="deadline-course">'+esc(d.course)+' · '+esc(courseName(d.course))+'</div><div class="deadline-title"><a href="'+d.href+'">'+esc(d.title)+'</a></div><div>'+sel(d.id,'status',STATUS,st)+'</div></div>';}).join('')+'</div>';
 }
-function sectionBody(p){
-  return '<main><section><div class="shell sec">'+
-    '<div class="crumb"><a href="#">Áttekintés</a><span>/</span><b>'+p.num+' '+esc(p.label)+'</b></div>'+
-    '<div class="sec-index"><b>'+p.num+'</b> / '+esc(p.label)+'</div>'+
-    '<div class="sec-main"><h2 class="sec-title">'+esc(p.title)+'</h2>'+(p.lead?'<p class="sec-lead">'+esc(p.lead)+'</p>':'')+
-    '<div id="content"></div></div></div></section>'+pagerHtml(p.id)+'</main>';
+function semesterBody(){
+  var cards=['k3','tm1','mv','eco'].map(function(id){var c=COURSE_META[id];return '<a class="course-card" href="#'+id+'"><div class="code">'+esc(c.code)+'</div><div><h3>'+esc(c.label)+'</h3><p>'+esc(c.desc)+'</p><div class="course-meta">'+esc(c.when)+'</div></div></a>';}).join('');
+  return '<main><div class="shell sem-hero"><div class="grid12"><div class="meta kick">PTE MIK / Építész MSc / 2026–27 ősz</div><h1>2026/27 ősz.<span>Féléves ütemterv.</span></h1><div class="sem-facts"><div><strong>Tantárgyak</strong>4 követett tárgy</div><div><strong>Időszak</strong>14 oktatási hét + pótlások</div><div><strong>Státuszok</strong>Böngészőben menthetők</div><div><strong>Összesítés</strong>Határidők egy helyen</div></div><p class="sem-intro">A tantárgyak tartalma külön marad; ez az oldal csak az időbeli összefüggéseket és a következő teendőket húzza egybe.</p></div><div style="margin-top:78px"><div class="meta" style="margin-bottom:12px">Féléves ritmus</div>'+semesterTimeline()+'</div></div>'+
+    '<section><div class="shell sec"><div class="sec-index"><b>01</b> / Határidők</div><div class="sec-main"><h2 class="sec-title">Következő határidők, egy listában.</h2><p class="sec-lead">A hivatalos vagy a feltöltött anyagokból egyértelműen azonosítható dátumok. Az ökológia és energetika PPT-je nem tartalmaz ütemezést.</p>'+deadlineList()+'</div></div></section>'+
+    '<section><div class="shell sec"><div class="sec-index"><b>02</b> / Tantárgyak</div><div class="sec-main"><h2 class="sec-title">Négy külön tantárgy.</h2><div class="course-grid">'+cards+'</div></div></div></section></main>';
+}
+
+function k3CourseBody(){
+  var items=K3_PAGES.map(function(p){return '<a class="idx-item" href="#k3/'+p.id+'"><div class="n num">'+p.num+'</div><div><h3>'+esc(p.label)+'</h3><p>'+esc(p.idx)+'</p></div></a>'}).join('');
+  return '<main><div class="shell course-hero"><div class="grid12"><div class="meta kick">PTE MIK / Építész MSc / Komplex tervezés 3</div><h1>Siklósi társasházak tervezése.</h1><div class="hero-meta"><div><strong>Feladat</strong>60 lakásos bérház, páros telepítés, 30 lakás egyéni</div><div><strong>Kontaktóra</strong>Csütörtök 7:45–15:45, É81</div><div><strong>Tantárgyfelelős</strong>Dr. Zilahi Péter</div><div><strong>Leadás</strong>Online PDF, 23:59, ET_ / KK_ / Z_[név]</div></div><p class="hero-copy">A Komplex 3 saját tantárgyi oldala változatlanul részletes marad: ütemterv, leadandók, értékelés, követelmények, funkcióprogram, források és tisztázandó kérdések.</p></div><div id="tlwrap" style="margin-top:82px">'+renderTimeline()+'</div></div><section><div class="shell sec"><div class="sec-index"><b>K3</b> / Tantárgy</div><div class="sec-main"><div class="idx-grid">'+items+'</div></div></div></section></main>';
+}
+function k3SectionBody(p){
+  return '<main><section><div class="shell sec"><div class="crumb"><a href="#">Félév</a><span>/</span><a href="#k3">Komplex 3</a><span>/</span><b>'+p.num+' '+esc(p.label)+'</b></div><div class="sec-index"><b>'+p.num+'</b> / '+esc(p.label)+'</div><div class="sec-main"><h2 class="sec-title">'+esc(p.title)+'</h2>'+(p.lead?'<p class="sec-lead">'+esc(p.lead)+'</p>':'')+'<div id="content"></div></div></div></section>'+k3Pager(p.id)+'</main>';
+}
+function k3Pager(id){var ids=[''].concat(K3_PAGES.map(function(p){return p.id})),i=ids.indexOf(id),prev=i>0?ids[i-1]:null,next=i<ids.length-1?ids[i+1]:null;function lab(x){if(x==='')return 'Komplex 3 áttekintés';var p=pageOf(x);return p.num+' '+p.label}var h='<div class="shell"><div class="grid12"><div class="pager">';h+=prev!=null?'<a class="prev" href="#k3/'+prev+'"><div class="pg-meta">Előző</div><div class="pg-title">'+lab(prev)+'</div></a>':'<div></div>';h+=next!=null?'<a class="next" href="#k3/'+next+'"><div class="pg-meta">Következő</div><div class="pg-title">'+lab(next)+'</div></a>':'<div></div>';return h+'</div></div></div>';}
+
+function simpleSchedule(rows,prefix){return '<div class="list">'+rows.map(function(r){var n=days(r.date),st=g(prefix+'_'+r.wk,'status',r.kind==='key'?'Nincs elkezdve':'—');return '<div class="row simple-row '+(r.kind==='key'?'key ':'')+(n<0?'past':'')+'"><div class="week num">'+esc(r.wk)+'</div><div class="date num">'+hdate(r.date)+'<div class="meta" style="margin-top:3px">'+dayTxt(n)+'</div></div><div><h3>'+esc(r.title)+'</h3><p>'+esc(r.detail||'')+'</p></div><div>'+sel(prefix+'_'+r.wk,'status',STATUS,st)+ta(prefix+'_'+r.wk,'note','Megjegyzés')+'</div></div>';}).join('')+'</div>'}
+function checkList(rows){return '<div class="list">'+rows.map(function(r){var st=g(r.id,'status','Nincs elkezdve');return '<div class="check-row"><div><div class="n">'+esc(r.name)+'</div><div class="f">'+esc(r.fmt||'')+'</div>'+ta(r.id,'note','Megjegyzés')+'</div><div>'+sel(r.id,'status',STATUS,st)+'</div></div>';}).join('')+'</div>'}
+function courseHero(id,lead){var c=COURSE_META[id];return '<div class="shell course-hero"><div class="grid12"><div class="meta kick">'+esc(c.code)+' / '+esc(c.label)+'</div><h1>'+esc(c.title)+'</h1><div class="hero-meta"><div><strong>Kontakt</strong>'+esc(c.when)+'</div><div><strong>Oktató</strong>'+esc(c.teacher)+'</div></div><p class="hero-copy">'+esc(lead||c.desc)+'</p></div></div>';}
+function sectionChunk(num,label,title,lead,content){return '<section class="course-section"><div class="shell sec"><div class="sec-index"><b>'+num+'</b> / '+esc(label)+'</div><div class="sec-main"><h2 class="sec-title">'+esc(title)+'</h2>'+(lead?'<p class="sec-lead">'+esc(lead)+'</p>':'')+content+'</div></div></section>'}
+
+function tmBody(){
+  var w=TM_WEIGHTS.map(function(x){return '<div class="weight-row"><b>'+esc(x[0])+'</b><span>'+esc(x[1])+'</span></div>'}).join('');
+  var facts='<div class="mini-facts"><div><b>3</b><span>kredit</span></div><div><b>100%</b><span>évközi teljesítmény</span></div><div><b>40%</b><span>sikeres minimum</span></div><div><b>13. hét</b><span>fő leadás</span></div></div>';
+  return '<main>'+courseHero('tm1','A tárgy saját oldalán a kutatás, az absztrakt, az esszé és az infografika marad együtt; az overview-ba csak a dátumok kerülnek át.')+
+    sectionChunk('01','Ütemterv','Előadások, konzultációk és beadások.','A tematikában megadott pénteki alkalmak és határidők.',simpleSchedule(TM_WEEKS,'tm'))+
+    sectionChunk('02','Leadandók','Három fő munkarész + az MI-használat jelölése.','Az aláírás feltétele, hogy minden feladat elfogadásra kerüljön.',checkList(TM_CHECK))+
+    sectionChunk('03','Értékelés','A félév 100%-ban évközi teljesítmény.','A megajánlott jegyhez az aláírás és legalább elégséges összteljesítmény szükséges.','<div class="list">'+w+'</div>'+facts)+
+    sectionChunk('04','Formai minimum','A beadások legfontosabb formai szabályai.','A tematikából közvetlenül átvett minimumok.','<div class="notice"><b>Absztrakt:</b> álló A4 PDF, előlap + absztrakt + tartalomjegyzék + irodalomjegyzék. <b>Esszé:</b> álló A4, legalább 8 írott oldal, kb. 16 000 karakter; szabályos tartalomjegyzék, témafelvezetés, kibontás, konklúzió, irodalom- és képjegyzék. <b>Infografika:</b> az esszé vizuális kivonata, PDF; nincs kötött formátum.</div><div class="source-note">Forrás: EPM069MLTM tantárgyi tematika, 2026/27 ősz.</div>')+'</main>';
+}
+function mvBody(){
+  var exam='<div class="notice"><b>Vizsga:</b> írásbeli. A nagy része feleletválasztós teszt, az utolsó kérdések között kifejtős feladatok is vannak. Minimum 40% szükséges a sikeres teljesítéshez. A féléves jegy 100%-ban a vizsgaeredményből áll. A 14. héten előrehozott vizsga tehető; siker esetén nem kell a vizsgaidőszakban újra vizsgázni.</div><div class="mini-facts"><div><b>20</b><span>max. pont</span></div><div><b>8</b><span>ponttól elégséges</span></div><div><b>17–20</b><span>jeles</span></div><div><b>+2</b><span>igény szerinti vizsgaalkalom</span></div></div>';
+  return '<main>'+courseHero('mv','Ennél a tárgynál nincs féléves beadandó a kapott tematikában; az előadások és a vizsga a lényeg.')+
+    sectionChunk('01','Ütemterv','Hat előadás és az előrehozott vizsga.','A 8. hét őszi szünet; a tematika a 14. hétre előrehozott vizsgát ír.',simpleSchedule(MV_WEEKS,'mv'))+
+    sectionChunk('02','Vizsga','A félév értékelése egyetlen vizsgára épül.','Az aktív órai részvétel a sikeres félévzárás feltétele.',exam)+
+    sectionChunk('03','Irodalom','Kötelező és ajánlott alapanyag.','A heti oldalszámok az ütemterv soraiban is megjelennek.','<div class="notice"><b>Kötelező:</b> Dr. Kovács-Andor Krisztián: Örökségvédelem (digitális jegyzet). <br><b>Ajánlott:</b> Dr. Szabó Pál: Műemlékvédelem I.; Dr. Szabó László: Műemlék, műemlékvédelem, építészet; Karták könyve.</div><div class="source-note">Forrás: EPM322ML tantárgyi tematika, 2026/27 ősz.</div>')+'</main>';
+}
+function ecoBody(){
+  var program='<div class="notice"><b>Program:</b> előtér, recepció, teakonyha + étkező, tárgyaló, irodák, mosdók, parkolók és köztes funkciók (például bemutatóterem, előadó vagy átrium). A teljes terület legfeljebb 1500 m², a fő funkciók nagyjából 1200 m².</div>';
+  return '<main>'+courseHero('eco','A kapott PowerPoint részletesen leírja a feladatot és a klímaszempontokat, de nem tartalmaz kontaktórákat vagy beadási határidőt; ezért ezen az oldalon nem találok ki dátumokat.')+
+    sectionChunk('01','Feladat','Klímára reagáló irodaház, háromfős csoportban.','A választott égöv időjárási viszonyai alapján kell felépíteni a tervezési koncepciót.','<div class="notice"><b>Feladat:</b> legfeljebb 1500 m²-es irodaház fiktív helyszínre. A munka a helyszínvizsgálattól és klímaanalízistől a tömegformáláson, épületburkon, szerkezeteken, anyaghasználaton és környezeti kapcsolatokon át a fűtés–hűtés–szellőztetés koncepciójáig terjed.</div>'+program)+
+    sectionChunk('02','Ellenőrzőlista','A PPT-ből kinyerhető munkarészek.','A státuszok itt követhetők akkor is, ha a hivatalos ütemezés nincs meg.',checkList(ECO_CHECK))+
+    sectionChunk('03','Hiányzó adat','Az ütemezés nincs a kapott anyagban.','','<div class="notice"><b>Nincs forrásból igazolható dátum:</b> a PowerPointban nem szerepel órarend, részleadás vagy végső beadási határidő. Emiatt az összesítő féléves timeline-on ez a tárgy dátum nélkül jelenik meg.</div><div class="source-note">Forrás: Építészeti ökológia és energetika — féléves feladat, HUN 2026.</div>')+'</main>';
 }
 
 function route(keepScroll){
-  keepScroll=keepScroll===true;var oldY=keepScroll?window.scrollY:0;
-  var hash=(location.hash||"").replace(/^#\/?/,"");
-  var p=pageOf(hash);
-  var app=document.getElementById("app");
-  document.title=(p?p.num+" "+p.label:"Áttekintés")+" — Komplex 3, Siklós";
-  if(!p){
-    app.innerHTML=chromeHead("")+indexBody()+chromeFoot();
-    placeToday();
-  }else{
-    app.innerHTML=chromeHead(p.id)+sectionBody(p)+chromeFoot();
-    document.getElementById("content").innerHTML=p.wrap?'<div class="list">'+p.fn()+'</div>':p.fn();
-    document.querySelectorAll("textarea").forEach(auto);
-  }
-  updateSave();
-  if(keepScroll){requestAnimationFrame(function(){window.scrollTo(0,oldY)})}else{window.scrollTo(0,0)}
+  keepScroll=keepScroll===true;var oldY=keepScroll?window.scrollY:0,parts=routeParts(),active=parts[0]||'',app=document.getElementById('app');
+  if(!parts.length){document.title='2026/27 ősz — Féléves ütemterv';app.innerHTML=chromeHead('')+semesterBody()+chromeFoot();}
+  else if(parts[0]==='k3'){
+    if(parts.length===1){document.title='Komplex 3 — Siklósi társasházak tervezése';app.innerHTML=chromeHead('k3')+k3CourseBody()+chromeFoot();placeToday();}
+    else{var p=pageOf(parts[1]);if(!p){location.hash='k3';return}document.title=p.num+' '+p.label+' — Komplex 3';app.innerHTML=chromeHead('k3')+k3SectionBody(p)+chromeFoot();document.getElementById('content').innerHTML=p.wrap?'<div class="list">'+p.fn()+'</div>':p.fn();document.querySelectorAll('textarea').forEach(auto);}
+  }else if(parts[0]==='tm1'){document.title='Tervezésmódszertan 1 — 2026/27';app.innerHTML=chromeHead('tm1')+tmBody()+chromeFoot();document.querySelectorAll('textarea').forEach(auto);}
+  else if(parts[0]==='mv'){document.title='Műemlékvédelem — 2026/27';app.innerHTML=chromeHead('mv')+mvBody()+chromeFoot();document.querySelectorAll('textarea').forEach(auto);}
+  else if(parts[0]==='eco'){document.title='Ökológia és energetika — 2026/27';app.innerHTML=chromeHead('eco')+ecoBody()+chromeFoot();document.querySelectorAll('textarea').forEach(auto);}
+  else if(pageOf(parts[0])){location.hash='k3/'+parts[0];return}
+  else{location.hash='';return}
+  updateSave();if(keepScroll){requestAnimationFrame(function(){window.scrollTo(0,oldY)})}else{window.scrollTo(0,0)}
 }
-window.addEventListener("hashchange",route);
-window.addEventListener("resize",placeToday);
+window.addEventListener('hashchange',route);window.addEventListener('resize',placeToday);
 
 /* ---- save ---- */
 function updateSave(){
@@ -443,7 +666,7 @@ function buildDoc(next){
   var d=JSON.stringify(next.savedAt);
   var v=JSON.stringify(next.v).replace(/<\//g,"<\\/");
   var body=main.replace(/^var S=.*;\n/m,'var S={savedAt:'+d+',v:'+v+'};\n').replace(/^var DATA=.*?;\n/m,'var DATA='+JSON.stringify(DATA).replace(/<\//g,"<\\/")+';\n');
-  return "<!doctype html>\n<html lang=\"hu\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<title>Komplex 3 — Siklós — Ütemterv 2026/27</title>\n<link rel=\"icon\" href=\"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27%3E%3Ctext y=%2713%27 font-size=%2713%27%3E%F0%9F%93%90%3C/text%3E%3C/svg%3E\">\n<style id=\"css\">"+css+"</style>\n</head>\n<body>\n<div id=\"app\"></div>\n<script id=\"main\">"+body+"<\/script>\n</body>\n</html>\n";
+  return "<!doctype html>\n<html lang=\"hu\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<title>2026/27 ősz — Féléves ütemterv</title>\n<link rel=\"icon\" href=\"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27%3E%3Ctext y=%2713%27 font-size=%2713%27%3E%F0%9F%93%90%3C/text%3E%3C/svg%3E\">\n<style id=\"css\">"+css+"</style>\n</head>\n<body>\n<div id=\"app\"></div>\n<script id=\"main\">"+body+"<\/script>\n</body>\n</html>\n";
 }
 function save(){
   if(!dirty||saving||readOnly)return;
